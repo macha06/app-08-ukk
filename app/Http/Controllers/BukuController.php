@@ -146,6 +146,8 @@ class BukuController extends Controller
         //delete image
         Storage::delete('public/buku/'. $buku->gambar);
 
+        $buku->kategori()->detach();
+
         //delete buku
         $buku->delete();
 
