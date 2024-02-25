@@ -241,10 +241,10 @@
                     </a>
                 </li>
                 <li
-                    class="sidebar-item">
-                    <a href="" class='sidebar-link'>
+                    class="sidebar-item {{ \Route::is('buku.pinjaman') ? 'active' : '' }}">
+                    <a href="{{ route('buku.pinjaman') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
-                        <span>Buku Pinjaman</span>
+                        <span>Buku Dipinjam</span>
                     </a>
                 </li>
                 <li

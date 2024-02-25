@@ -16,10 +16,10 @@ return new class extends Migration
             $table->date('return_date');
             $table->date('returned_at')->nullable();
             $table->string('status');
-            $table->unsignedBigInteger('id_buku');
-            $table->foreign('id_buku')->references('id')->on('buku');
-            $table->unsignedBigInteger('id_user');
-            $table->foreign('id_user')->references('id')->on('users');
+            $table->unsignedBigInteger('buku_id');
+            $table->foreign('buku_id')->references('id')->on('buku');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

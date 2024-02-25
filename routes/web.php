@@ -59,6 +59,7 @@ Route::prefix('peminjam')->middleware(['auth', 'auth.peminjam'])->group(function
     Route::get('/buku/{id}/pinjem', [BukuController::class, 'pinjem'])->name('buku.pinjam.create');
     Route::post('/buku/{id}/pinjam', [PeminjamanController::class, 'pinjam'])->name('buku.pinjam');
     Route::post('/buku/{id}/kembalikan', [PeminjamanController::class, 'kembalikan'])->name('buku.kembalikan');
+    Route::get('/buku/pinjaman', [PeminjamanController::class, 'borrowedBooks'])->name('buku.pinjaman');
 });
 Route::get('logout', function () {
     Auth::logout();

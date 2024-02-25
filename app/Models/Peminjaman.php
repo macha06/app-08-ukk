@@ -11,8 +11,8 @@ class Peminjaman extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_buku',
-        'id_user',
+        'buku_id',
+        'user_id',
         'return_date',
         'returned_at',
         'status',

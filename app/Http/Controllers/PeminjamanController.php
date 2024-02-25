@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Middleware\Peminjam;
+use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use App\Models\Buku as Model;
-use App\Models\Peminjaman;
+use App\Http\Middleware\Peminjam;
+use App\Models\User; 
+use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PeminjamanController extends Controller
@@ -20,12 +22,12 @@ class PeminjamanController extends Controller
         $buku = Model::findOrFail($id);
         if ($buku->stok < 1) {
             Alert::class('Stok buku ' . $buku->judul . ' habis');
-            return redirect()->back();
+            return redirect()->route('buku.pinjaman');
         }
 
         $pinjam = new Peminjaman();
-        $pinjam->id_user = auth()->id(); // ID pengguna yang melakukan peminjaman
-        $pinjam->id_buku = $id;
+        $pinjam->user_id = auth()->id(); // ID pengguna yang melakukan peminjaman
+        $pinjam->buku_id = $id;
         $pinjam->return_date = $request->return_date;
         $pinjam->status = 'Dipinjam';
         $pinjam->save();
@@ -33,7 +35,7 @@ class PeminjamanController extends Controller
         $buku->stok--;
         $buku->save();
         Alert::success('Buku ' . $buku->judul . ' dipinjam');
-        return redirect()->back();
+        return redirect()->route('buku.pinjaman');
     }
 
     public function kembalikan( Request $request, $id )
@@ -44,10 +46,21 @@ class PeminjamanController extends Controller
         $pinjam->save();
 
         $buku = $pinjam->buku;
-        $buku->stock++;
+        $buku->stok++;
         $buku->save();
 
         Alert::success('Buku ' . $buku->judul . ' dikembalikan');
-        return redirect()->route('bukus.index');
+        return redirect()->route('buku.pinjaman');
     }
+
+    public function borrowedBooks()
+    {
+        $userId = Auth::id();
+
+        // Ambil data buku yang dipinjam oleh pengguna yang sedang login
+        $borrowedBooks = User::find($userId)->peminjaman()->with('buku')->orderBy('status', 'DESC')->get();
+
+        return view('peminjam.buku_pinjaman', compact('borrowedBooks'));
+    }
+    
 }
