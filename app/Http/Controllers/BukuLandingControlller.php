@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku as Model;
+use App\Models\Kategori;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -18,6 +19,7 @@ class BukuLandingControlller extends Controller
             'routePrefix' => 'buku',
             'title' => 'Data Buku',
             'user' => User::all(),
+            'kategori' => Kategori::all(),
             'buku' => $model
         ])->with('model', $model);
     }

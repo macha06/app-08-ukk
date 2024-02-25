@@ -51,7 +51,11 @@
                                     <td>
                                         <img src="{{ Storage::url('public/buku/').$item->gambar }}" class="rounded" style="width: 150px">
                                     </td>
-                                    <td>{{ $item->kategori }}</td>
+                                    <td>
+                                        @foreach($item->kategori as $category)
+                                                <span class="badge bg-primary">{{ $category->nm_kategori }}</span><br>
+                                        @endforeach
+                                    </td>
                                     <td>{{ $item->judul }}</td>
                                     <td>{{ $item->penulis }}</td>
                                     <td>

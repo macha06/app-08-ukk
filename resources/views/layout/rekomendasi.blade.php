@@ -17,11 +17,9 @@
             </div>
             <h5>The Giver</h5>
             <div class="genre">
-              @if ($item->kategori == '0')
-              <span>Fiksi</span>
-              @elseif ($item->kategori == '1')
-              <span><Non-Fiksi></Non-Fiksi></span>
-              @endif
+              @foreach($item->kategori as $category)
+                <span class="badge bg-primary">{{ $category->nm_kategori }} :</span>
+              @endforeach
             </div>
             <div class="footer">
               <span class="star"><i class="fa fa-star"></i> 4.7</span>

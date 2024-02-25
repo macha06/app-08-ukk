@@ -32,7 +32,7 @@
           <i class="fa-solid fa-bookmark"></i>
         </div>
         <div class="content">
-          <h4 class="count">2</h4>
+          <h4 class="count">{{ $kategori->count() }}</h4>
           <small>kategori</small>
         </div>
       </div>
