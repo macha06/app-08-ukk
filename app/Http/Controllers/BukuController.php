@@ -74,9 +74,11 @@ class BukuController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Model $buku)
+    public function edit($id)
     {
-        return view('admin.buku_update', compact('buku'));
+        $buku = Model::findOrFail($id);
+        $kategori = Kategori::all();
+        return view('admin.buku_update', compact('buku', 'kategori'));
 
     }
 
@@ -92,7 +94,7 @@ class BukuController extends Controller
             'tahun_terbit' => 'required',
             'deskripsi' => 'required',
             'gambar'     => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'kategori'  => 'required',  
+            'kategori'  => 'required|array',  
             'stok'       => 'required',
         ]);
 
@@ -114,9 +116,9 @@ class BukuController extends Controller
                 'penerbit'  => $request->get('penerbit'),
                 'tahun_terbit' => $request->get('tahun_terbit'),
                 'deskripsi' => $request->get('deskripsi'),
-                'kategori'  => $request->get('kategori'),
                 'stok'       => $request->get('stok'),
             ]);
+            $buku->kategori()->sync($request->input('kategori'));
 
         } else {
 
@@ -127,9 +129,9 @@ class BukuController extends Controller
                 'penerbit'  => $request->get('penerbit'),
                 'tahun_terbit' => $request->get('tahun_terbit'),
                 'deskripsi' => $request->get('deskripsi'),
-                'kategori'  => $request->get('kategori'),
                 'stok'       => $request->get('stok'),
             ]);
+            $buku->kategori()->sync($request->input('kategori'));
         }
         Alert::success('Hore!', 'data berhasil diupdate');
         //redirect to index

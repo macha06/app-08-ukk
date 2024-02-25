@@ -92,7 +92,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="formFile" class="form-label">Cover Buku</label>
-                                            <input class="gambar" name="gambar" type="file" id="formFile">
+                                            <input class="form-control" name="gambar" type="file" id="formFile">
                                         </div>
                                         @error('gambar')
                                                 <div class="alert alert-danger mt-2">
@@ -101,10 +101,13 @@
                                             @enderror
                                     </div>
                                     <div class="col-12">
-                                            @foreach($categories as $$item)
-                                                <input type="checkbox" id="category{{ $category->id }}" name="categories[]" value="{{ $category->id }}" 
-                                                {{ $book->kategori->contains($category->id) ? 'checked' : '' }}>
-                                                <label for="category{{ $category->id }}">{{ $category->name }}</label><br>
+                                        <div class="form-group">
+                                            <label for="first-name-vertical">Kategori</label>
+                                            <br>
+                                            @foreach($kategori as $item)
+                                                <input type="checkbox" class="form-check-input" id="category{{ $item->id }}" name="kategori[]" value="{{ $item->id }}" 
+                                                {{ $buku->kategori->contains($item->id) ? 'checked' : '' }}>
+                                                <label for="category{{ $item->id }}">{{ $item->nm_kategori }}</label><br>
                                             @endforeach
                                         </div>
                                         @error('kategori')
