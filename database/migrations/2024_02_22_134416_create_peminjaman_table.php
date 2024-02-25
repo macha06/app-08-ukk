@@ -13,12 +13,9 @@ return new class extends Migration
     {
         Schema::create('peminjaman', function (Blueprint $table) {
             $table->id();
-            $table->date('tanggal_pinjam');
-            $table->date('tanggal_kembali');
+            $table->date('return_date');
+            $table->date('returned_at')->nullable();
             $table->string('status');
-            $table->string('denda');
-            $table->string('ulasan');
-            $table->bigInteger('rating');
             $table->unsignedBigInteger('id_buku');
             $table->foreign('id_buku')->references('id')->on('buku');
             $table->unsignedBigInteger('id_user');

@@ -9,8 +9,10 @@ use App\Http\Controllers\PeminjamController;
 use App\Http\Controllers\AdminBerandaController;
 use App\Http\Controllers\BukuLandingControlller;
 use App\Http\Controllers\BukuPeminjamController;
+use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PetugasBerandaController;
 use App\Http\Controllers\PeminjamBerandaController;
+use App\Models\Buku;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +56,9 @@ Route::prefix('petugas')->middleware(['auth', 'auth.petugas'])->group(function (
 Route::prefix('peminjam')->middleware(['auth', 'auth.peminjam'])->group(function () {
     Route::get('beranda', [PeminjamBerandaController::class, 'index'])->name('peminjam.beranda');
     Route::resource('bukus', BukuPeminjamController::class);
+    Route::get('/buku/{id}/pinjem', [BukuController::class, 'pinjem'])->name('buku.pinjam.create');
+    Route::post('/buku/{id}/pinjam', [PeminjamanController::class, 'pinjam'])->name('buku.pinjam');
+    Route::post('/buku/{id}/kembalikan', [PeminjamanController::class, 'kembalikan'])->name('buku.kembalikan');
 });
 Route::get('logout', function () {
     Auth::logout();

@@ -22,6 +22,12 @@ class BukuController extends Controller
         ])->with('model', $model);
     }
 
+    public function pinjem(Request $request, $id)
+    {
+        $model = Model::findOrFail($id);
+        return view('peminjam.peminjaman_create', compact('model'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
