@@ -20,8 +20,6 @@ return new class extends Migration
             $table->string('deskripsi');
             $table->string('gambar');
             $table->integer('stok');
-            $table->unsignedBigInteger('kategori_id');
-            $table->foreign('kategori_id')->references('id')->on('kategori');
             $table->timestamps();
         });
     }

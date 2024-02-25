@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kategori as Model;
 use Illuminate\Http\Request;
+use App\Models\Kategori as Model;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class KategoriController extends Controller
 {
@@ -29,10 +30,15 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'nm_kategori' => 'required',
+        ]);
+
         $model = new Model();
         $model->nm_kategori = $request->nm_kategori;
         $model->save();
-        return redirect('kategori.index');
+        Alert::success('Hore!', 'data Kategori berhasil disimpan!');
+        return redirect()->route('kategori.index', $model);
     }
 
     /**
@@ -48,7 +54,8 @@ class KategoriController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $model = Model::findOrfail($id);
+        return view('admin.kategori_update')->with('model', $model);
     }
 
     /**
@@ -56,7 +63,14 @@ class KategoriController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $this->validate($request, [
+            'nm_kategori' => 'required',
+        ]);
+        $model = Model::findOrfail($id);
+        $model->nm_kategori = $request->nm_kategori;
+        $model->save();
+        Alert::success('Hore!', 'data Kategori berhasil diupdate!');
+        return redirect()->route('kategori.index', $model);
     }
 
     /**
@@ -64,6 +78,9 @@ class KategoriController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $model = Model::findOrfail($id);
+        $model->delete();
+        Alert::success('Hore!', 'data Kategori berhasil dihapus!');
+        return redirect()->route('kategori.index', $model);
     }
 }

@@ -77,17 +77,17 @@
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label for="formFile" class="form-label">Cover Buku</label>
-                                                <input name="gambar" type="file" id="formFile" class="@error('image') is-invalid @enderror">
+                                                <input class="form-control mb-3" name="gambar" type="file" id="formFile" class="@error('image') is-invalid @enderror">
                                             </div>
                                         </div>
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label for="first-name-vertical">Kategori</label>
-                                                <select class="form-select" aria-label="Default select example " name="kategori">
-                                                    <option selected>Pilih Kategori</option>
-                                                    <option value="0">Fiksi</option>
-                                                    <option value="1">Non Fiksi</option>
-                                                  </select>
+                                        <div class="col-12 mb-3">
+                                                <label for="formFile" class="form-label"><b>Kategori</b></label> <br>
+                                                @foreach ($kategori as $item)
+                                                <input class="form-check-input" name="kategori[]" type="checkbox" value="{{ $item->id }}" id="formFile">
+                                                <label class="form-check-label" for="flexCheckDefault">
+                                                    {{ $item->nm_kategori }}
+                                                </label>
+                                                @endforeach
                                             </div>
                                         </div>
                                         <div class="col-12">

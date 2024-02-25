@@ -16,13 +16,12 @@ class Buku extends Model
         'tahun_terbit',
         'deskripsi',
         'gambar',
-        'kategori_id',
         'stok',
     ];
 
 
     public function kategori()
     {
-        return $this->belongsToMany(Kategori::class);
+        return $this->belongsToMany(Kategori::class, 'buku_kategori');
     }
 }

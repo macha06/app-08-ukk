@@ -101,13 +101,11 @@
                                             @enderror
                                     </div>
                                     <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="first-name-vertical">Kategori</label>
-                                            <select class="form-select" aria-label="Default select example" name="kategori">
-                                                <option selected>{{ $buku->kategori }}</option>
-                                                    <option value="1">Non Fiksi</option>
-                                                    <option value="0">Fiksi</option>
-                                              </select>
+                                            @foreach($categories as $$item)
+                                                <input type="checkbox" id="category{{ $category->id }}" name="categories[]" value="{{ $category->id }}" 
+                                                {{ $book->kategori->contains($category->id) ? 'checked' : '' }}>
+                                                <label for="category{{ $category->id }}">{{ $category->name }}</label><br>
+                                            @endforeach
                                         </div>
                                         @error('kategori')
                                                 <div class="alert alert-danger mt-2">

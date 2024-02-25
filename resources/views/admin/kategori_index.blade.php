@@ -9,7 +9,7 @@
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.beranda') }}">Dashboard</a></li>
                         <li class="breadcrumb-item active" aria-current="page">Kategori Buku</li>
                     </ol>
                 </nav>
@@ -46,10 +46,15 @@
                                 @foreach ($model as $item)    
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->nama_kategori }}</td>
+                                    <td>{{ $item->nm_kategori }}</td>
                                     <td>
-                                        <a href="{{ url('admin/kategori/update') }}" class="btn btn-warning">Edit</a>
-                                        <a href="" class="btn btn-danger">Delete</a>
+                                        
+                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('kategori.destroy', $item->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <a href="{{ route('kategori.edit', $item->id) }}" class="btn btn-warning">Edit</a>
+                                            <button type="submit" class="btn btn-danger">HAPUS</button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach

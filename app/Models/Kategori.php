@@ -15,9 +15,8 @@ class Kategori extends Model
         'nama_kategori'
     ];
 
-
-    public function books()
+    public function buku()
     {
-        return $this->belongsToMany(Buku::class);
+        return $this->belongsToMany(Buku::class, 'buku_kategori');
     }
 }

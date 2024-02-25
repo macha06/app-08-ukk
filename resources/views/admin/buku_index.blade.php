@@ -62,11 +62,11 @@
                                     </td>
                                     <td>{{ $item->deskripsi }}</td>
                                     <td>
-                                        @if ($item->kategori == '0')
-                                            <span class="badge bg-primary">fiksi</span>
-                                        @elseif ($item->kategori == '1')
-                                            <span class="badge bg-success">non fiksi</span>
-                                        @endif
+                                        <ul>
+                                            @foreach($item->kategori as $category)
+                                                <li>{{ $category->nm_kategori }}</li>
+                                            @endforeach
+                                        </ul>
                                     </td>
                                     <td>{{ $item->stok }}</td>
                                     <td>                 

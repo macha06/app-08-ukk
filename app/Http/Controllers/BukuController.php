@@ -27,7 +27,8 @@ class BukuController extends Controller
      */
     public function create()
     {
-        return view('admin.buku_create');
+        $kategori = Kategori::get();
+        return view('admin.buku_create', compact('kategori'));
     }
 
     /**
@@ -42,7 +43,7 @@ class BukuController extends Controller
             'tahun_terbit' => 'required',
             'deskripsi' => 'required',
             'gambar'     => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'id_kategori'  => 'required',  
+            'kategori'  => 'required|array',
             'stok'       => 'required',
         ]);
         $gambar = $request->file('gambar');
@@ -55,10 +56,9 @@ class BukuController extends Controller
             'penerbit'  => $request->get('penerbit'),
             'tahun_terbit' => $request->get('tahun_terbit'),
             'deskripsi' => $request->get('deskripsi'),
-            'id_kategori'  => $request->get('kategori'),
             'stok'       => $request->get('stok'),
         ]);
-        $model->kategori()->sync($request->input('kategori'));
+        $model->kategori()->attach($request->input('kategori'));
         Alert::success('Hore!', 'data berhasil disimpan!');
         return redirect()->route('buku.index', $model);
     }
@@ -76,7 +76,6 @@ class BukuController extends Controller
      */
     public function edit(Model $buku)
     {
-
         return view('admin.buku_update', compact('buku'));
 
     }

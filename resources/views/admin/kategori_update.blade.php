@@ -9,8 +9,8 @@
     <div class="col-12 col-md-6 order-md-2 order-first">
         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-                <li class="breadcrumb-item"><a href="index.html">Kategori Buku</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('admin.beranda') }}">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="{{ route('kategori.index') }}">Kategori Buku</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Update Kategori</li>
             </ol>
         </nav>
@@ -26,14 +26,21 @@
                 </div>
                 <div class="card-content">
                     <div class="card-body">
-                        <form class="form form-vertical">
+                        <form action="{{ route('kategori.update', $model->id) }}" method="post">
+                            @csrf
+                            @method('put')
                             <div class="form-body">
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="first-name-vertical">Nama Kategori</label>
                                             <input type="text" id="first-name-vertical" class="form-control"
-                                                name="fname" placeholder="Nama Kategori">
+                                                name="nm_kategori" value="{{ $model->nm_kategori }}">
+                                            @error('nm_kategori')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
                                         </div>
                                     </div>
                                     <div class="col-12 d-flex justify-content-end">
