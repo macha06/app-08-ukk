@@ -9,6 +9,7 @@ use App\Http\Controllers\PeminjamController;
 use App\Http\Controllers\AdminBerandaController;
 use App\Http\Controllers\BukuLandingControlller;
 use App\Http\Controllers\BukuPeminjamController;
+use App\Http\Controllers\DataPeminjamanController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PetugasBerandaController;
 use App\Http\Controllers\PeminjamBerandaController;
@@ -45,6 +46,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     Route::get('beranda', [AdminBerandaController::class, 'index'])->name('admin.beranda');
     Route::resource('buku', BukuController::class);
     Route::resource('kategori', KategoriController::class);
+    Route::get('peminjaman', [DataPeminjamanController::class, 'index'])->name('admin.peminjaman');
 });
 
 

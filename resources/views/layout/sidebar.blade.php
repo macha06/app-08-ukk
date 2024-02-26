@@ -68,8 +68,8 @@
                     </a>
                 </li> 
                 <li
-                    class="sidebar-item {{ \Route::is('peminjam.*') ? 'active' : '' }}">
-                    <a href="" class='sidebar-link'>
+                    class="sidebar-item {{ \Route::is('admin.peminjaman') ? 'active' : '' }}">
+                    <a href="{{ route('admin.peminjaman') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Data Peminjaman</span>
                     </a>
