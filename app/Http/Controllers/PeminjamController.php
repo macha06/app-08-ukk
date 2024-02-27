@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Http\Middleware\Peminjam;
 use Illuminate\Http\Request;
 use App\Models\User as Model;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\StoreUserRequest;
+use App\Models\Peminjaman;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PeminjamController extends Controller
@@ -24,6 +25,18 @@ class PeminjamController extends Controller
         ])->with('model', $model);
     }
 
+    public function show($id)
+    {
+        $user = Model::findOrFail($id);
+
+        // Ambil buku yang sedang dipinjam oleh pengguna
+        $borrowedBooks = $user->peminjaman()->where('status', 'Dipinjam')->with('buku')->paginate(2);
+        $book = $user->peminjaman()->where('status', 'Dikembalikan')->with('buku')->paginate(2);
+    
+        // Kirim data ke view
+        return view('petugas.user_detail', compact('user', 'borrowedBooks', 'book'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -35,10 +48,6 @@ class PeminjamController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.

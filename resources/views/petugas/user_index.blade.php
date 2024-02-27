@@ -57,7 +57,7 @@
                                         <span class="badge bg-success">{{ $item->akses }}</span>
                                     </td>           
                                     <td>                                    
-                                        <a href="" class="btn btn-sm btn-warning">buku yg di pinjam</a>
+                                        <a href="{{ route('peminjam.show', $item->id) }}" class="btn btn-sm btn-warning">buku yg di pinjam</a>
                                     </td>
                                 </tr>
                                 @endforeach
