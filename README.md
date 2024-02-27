@@ -1,2 +1,2 @@
 # M-Puss
-![M-PUSS](/assets/img/logo.png)
+![M-PUSS](/public/assets/img/logo.png)
