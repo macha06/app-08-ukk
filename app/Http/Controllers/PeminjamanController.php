@@ -29,7 +29,7 @@ class PeminjamanController extends Controller
         $pinjam->user_id = auth()->id(); // ID pengguna yang melakukan peminjaman
         $pinjam->buku_id = $id;
         $pinjam->return_date = $request->return_date;
-        $pinjam->status = 'Dipinjam';
+        $pinjam->status = 'Menunggu Persetujuan';
         $pinjam->save();
 
         $buku->stok--;
@@ -58,9 +58,18 @@ class PeminjamanController extends Controller
         $userId = Auth::id();
 
         // Ambil data buku yang dipinjam oleh pengguna yang sedang login
-        $borrowedBooks = User::find($userId)->peminjaman()->with('buku')->orderBy('status', 'DESC')->get();
+        $aprove = User::find($userId)->peminjaman()->with('buku')->where('status', 'Menunggu Persetujuan')->paginate(2);
+        $pinjam = User::find($userId)->peminjaman()->with('buku')->where('status', 'Dipinjam')->paginate(2);
+        $kembali = User::find($userId)->peminjaman()->with('buku')->where('status', 'Dikembalikan')->paginate(2);
+        $tolak = User::find($userId)->peminjaman()->with('buku')->where('status', 'Ditolak')->paginate(2);
 
-        return view('peminjam.buku_pinjaman', compact('borrowedBooks'));
+
+        return view('peminjam.buku_pinjaman', with([
+            'aprove' => $aprove,
+            'pinjam' => $pinjam,
+            'kembali' => $kembali,
+            'tolak' => $tolak
+        ]));
     }
     
 }

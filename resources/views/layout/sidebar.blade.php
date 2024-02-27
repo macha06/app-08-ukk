@@ -163,10 +163,10 @@
                     </a>
                 </li> 
                 <li
-                    class="sidebar-item {{ \Route::is('peminjaman.*') ? 'active' : '' }}">
-                    <a href="" class='sidebar-link'>
+                    class="sidebar-item {{ \Route::is('peminjaman.index') ? 'active' : '' }}">
+                    <a href="{{ route('approve.index') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
-                        <span>Data Peminjaman</span>
+                        <span>Request Peminjaman</span>
                     </a>
                 </li> 
                 <li class="sidebar-title">misc</li>

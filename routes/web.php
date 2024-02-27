@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PeminjamController;
 use App\Http\Controllers\AdminBerandaController;
+use App\Http\Controllers\AprovePeminjamanController;
 use App\Http\Controllers\BukuLandingControlller;
 use App\Http\Controllers\BukuPeminjamController;
 use App\Http\Controllers\DataPeminjamanController;
@@ -54,6 +55,9 @@ Route::prefix('petugas')->middleware(['auth', 'auth.petugas'])->group(function (
     Route::get('beranda', [PetugasBerandaController::class, 'index'])->name('petugas.beranda');
     Route::resource('peminjam', PeminjamController::class);
     Route::resource('buku', BukuController::class);
+    Route::get('/peminjaman/approve', [AprovePeminjamanController::class, 'index'])->name('approve.index');
+    Route::post('/peminjaman/{id}/approve', [AprovePeminjamanController::class, 'approveLoan'])->name('approve.loan');
+    Route::post('/peminjaman/{id}/reject', [AprovePeminjamanController::class, 'rejectLoan'])->name('reject.loan');
 });
 Route::prefix('peminjam')->middleware(['auth', 'auth.peminjam'])->group(function () {
     Route::get('beranda', [PeminjamBerandaController::class, 'index'])->name('peminjam.beranda');
