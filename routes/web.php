@@ -28,16 +28,6 @@ use App\Models\Buku;
 */
 #Auth
 Route::get('/', [BukuLandingControlller::class, 'index']);
-#Route::get('/login', function () {
-   # return view('auth.login');
-#});
-#Route::get('/register', function () {
-    #return view('auth.register');
-#});
-
-#admin
-#
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -66,6 +56,7 @@ Route::prefix('peminjam')->middleware(['auth', 'auth.peminjam'])->group(function
     Route::post('/buku/{id}/pinjam', [PeminjamanController::class, 'pinjam'])->name('buku.pinjam');
     Route::post('/buku/{id}/kembalikan', [PeminjamanController::class, 'kembalikan'])->name('buku.kembalikan');
     Route::get('/buku/pinjaman', [PeminjamanController::class, 'borrowedBooks'])->name('buku.pinjaman');
+    Route::get('/peminjaman/{id}/cetak-struk-pdf', [PeminjamanController::class, 'cetakStruk'])->name('peminjaman.cetak_struk_pdf');
 });
 Route::get('logout', function () {
     Auth::logout();

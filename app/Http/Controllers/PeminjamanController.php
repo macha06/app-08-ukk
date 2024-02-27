@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Dompdf\Dompdf;
+use App\Models\User; 
 use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use App\Models\Buku as Model;
 use App\Http\Middleware\Peminjam;
-use App\Models\User; 
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -69,6 +70,16 @@ class PeminjamanController extends Controller
             'pinjam' => $pinjam,
             'kembali' => $kembali,
             'tolak' => $tolak
+        ]));
+    }
+
+    public function cetakStruk($id)
+    {
+        // Ambil data peminjaman berdasarkan ID
+        $peminjaman = Peminjaman::findOrFail($id);
+
+        return view('peminjam.struk_peminjaman', with([
+            'peminjaman' => $peminjaman
         ]));
     }
     

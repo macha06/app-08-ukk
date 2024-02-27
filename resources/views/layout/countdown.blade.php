@@ -23,7 +23,7 @@
           <i class="fa-solid fa-hand-holding"></i>
         </div>
         <div class="content">
-          <h4 class="count">0</h4>
+          <h4 class="count">{{ $peminjaman->count() }}</h4>
           <small>Buku Yg terpinjam</small>
         </div>
       </div>

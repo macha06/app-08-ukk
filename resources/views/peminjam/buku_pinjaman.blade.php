@@ -121,10 +121,13 @@
                                         </td>
                                         <td>
                                             @if ($item->status == 'Dipinjam')
-                                            <form action="{{ route('buku.kembalikan', ['id' => $item->id]) }}" method="post" onsubmit="return confirm('Apakah Anda Sudah Puas Mambaca Buku ini');">
+                                            {{-- <form action="{{ route('buku.kembalikan', ['id' => $item->id]) }}" method="post" onsubmit="return confirm('Apakah Anda Sudah Puas Mambaca Buku ini');">
                                                 @csrf
                                                 <button class="btn btn-danger" type="submit">Kembalikan Buku</button>
-                                            </form>
+                                            </form> --}}
+                                            <!-- Contoh tautan pada tampilan peminjaman -->
+                                            <a href="{{ route('peminjaman.cetak_struk_pdf', $item->id) }}" target="_blank" class="btn btn-primary">Cetak Struk PDF</a>
+
                                             @elseif ($item->status == 'Dikembalikan')
                                             <span class="badge bg-success">Buku Sudah Dikembalikan</span>
                                             @endif

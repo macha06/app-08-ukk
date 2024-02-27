@@ -21,7 +21,7 @@ class AprovePeminjamanController extends Controller
     public function approveLoan($id)
     {
         $loan = Peminjaman::findOrFail($id);
-        $loan->status = 'Disetujui';
+        $loan->status = 'Dipinjam';
         $loan->save();
 
         Alert::success('Status peminjaman '.' disetujui');

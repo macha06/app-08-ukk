@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Buku as Model;
-use App\Models\Kategori;
 use App\Models\User;
+use App\Models\Kategori;
+use App\Models\Peminjaman;
 use Illuminate\Http\Request;
+use App\Models\Buku as Model;
 
 class BukuLandingControlller extends Controller
 {
@@ -20,6 +21,7 @@ class BukuLandingControlller extends Controller
             'title' => 'Data Buku',
             'user' => User::all(),
             'kategori' => Kategori::all(),
+            'peminjaman' => Peminjaman::all(),
             'buku' => $model
         ])->with('model', $model);
     }

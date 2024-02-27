@@ -15,7 +15,7 @@
               <a href='{{ route('login') }}'><img src="{{ Storage::url('public/buku/').$item->gambar }}" class="rounded" style="width: 150px"></a>
               <span class="badge">Baru</span>
             </div>
-            <h5>The Giver</h5>
+            <h5>{{ $item->judul }}</h5>
             <div class="genre">
               @foreach($item->kategori as $category)
                 <span class="badge bg-primary">{{ $category->nm_kategori }} :</span>
