@@ -69,7 +69,8 @@ class PeminjamanController extends Controller
             'aprove' => $aprove,
             'pinjam' => $pinjam,
             'kembali' => $kembali,
-            'tolak' => $tolak
+            'tolak' => $tolak,
+            'buku' => Model::all()
         ]));
     }
 

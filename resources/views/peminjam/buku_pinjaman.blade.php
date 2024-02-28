@@ -200,7 +200,11 @@
                                             
                                         </td>
                                         <td>
-                                            <a href="" class="btn btn-sm btn-warning">Beri Ulasan</a>
+                                            @if (!auth()->user()->hasReviewed($item->id))      
+                                            <a href="{{ route('ulasan.create', ['buku_id' => $item->id]) }}" class="btn btn-sm btn-warning">Beri Ulasan</a>
+                                            @else
+                                            <span class="badge bg-info">Sudah dikomentari</span></span>
+                                            @endif
                                         </td>
                                     </tr>
                                     @empty

@@ -34,6 +34,8 @@
                             <div class="row">
                                 <div class="col-6">
                                     <img src="{{ Storage::url('public/buku/').$model->gambar }}" class="rounded" style="width: 100%">
+                                    <p class="mt-3">Rating : <span class="badge bg-primary">{{ $model->averageRating() }}</span></p>
+                                    
                                 </div>
                                 <div class="col-6">
                                     <h5 class="card-title">
@@ -91,17 +93,23 @@
                         <table class="table" id="table2">
                             <thead>
                                 <tr>
-                                    <th>Ulasan</th>
+                                    <th>Komentar</th>
                                     <th>Rating</th>
                                     <th>pemberi Ulasan</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Sedih banget</td>
-                                    <td>5</td>
-                                    <td>Macha</td>
-                                </tr>
+                                @forelse ($model->ulasan as $item)
+                                    <tr>
+                                        <td>{{ $item->komentar }}</td>
+                                        <td>{{ $item->rating }}</td>
+                                        <td>{{ $item->user->name }}</td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="3" class="text-center">Tidak ada Ulasan</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>

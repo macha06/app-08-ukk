@@ -56,4 +56,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(KoleksiBuku::class);
     }
+
+    public function ulasan()
+    {
+        return $this->hasMany(Ulasan::class);
+    }
+    public function hasReviewed($bukuId)
+    {
+        return $this->ulasan()->where('buku_id', $bukuId)->exists();
+    }
 }

@@ -34,4 +34,21 @@ class Buku extends Model
     {
         return $this->hasMany(KoleksiBuku::class);
     }
+
+    public function ulasan()
+    {
+        return $this->hasMany(Ulasan::class);
+    }
+
+    public function averageRating()
+    {
+        $totalRatings = $this->ulasan()->count();
+        $sumRatings = $this->ulasan()->sum('rating');
+        
+        if ($totalRatings > 0) {
+            return round($sumRatings / $totalRatings, 2);
+        } else {
+            return 0;
+        }
+    }
 }
