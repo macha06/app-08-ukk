@@ -5,7 +5,40 @@
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
                 <h3>Data Peminjaman</h3>
-                <a href="{{ route('admin.peminjaman.export') }}" class="btn btn-sm btn-primary mt-5"><i class="bi bi-file-earmark-spreadsheet">Download Excel</i></a>
+                <div class="row">
+                    <form action="{{ route('admin.peminjaman.export') }}" method="POST" target="_blank">
+                    @csrf
+                        <div class="col-lg-4 mb-1 mt-3">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Tahun</span>
+                                <input type="text" class="form-control" name="tahun" placeholder="Tahun"
+                                    aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-1 mt-3">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon1">Bulan</span>
+                                <select class="form-select" name="bulan" id="">
+                                    <option value="1">Januari</option>
+                                    <option value="2">Februari</option>
+                                    <option value="3">Maret</option>
+                                    <option value="4">April</option>
+                                    <option value="5">Mei</option>
+                                    <option value="6">Juni</option>
+                                    <option value="7">Juli</option>
+                                    <option value="8">Agustus</option>
+                                    <option value="9">September</option>
+                                    <option value="10">Oktober</option>
+                                    <option value="11">November</option>
+                                    <option value="12">Desember</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 mb-1 mt-3">
+                            <button class="btn btn-primary" type="submit">Export to Excel</button>
+                        </div>
+                    </form>
+                </div>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">

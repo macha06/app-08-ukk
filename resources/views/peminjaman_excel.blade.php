@@ -11,7 +11,31 @@
     </tr>
     <tr>
         <td colspan="6" style="text-align: center;">
-            <h1  style="text-align: center; font-weight: bold">Tahun : Bulan</h1>
+            <h1  style="text-align: center; font-weight: bold">
+                @if ($bulan == 1)
+                    Januari
+                @elseif ($bulan == 2)
+                    Februari
+                @elseif ($bulan == 3)
+                    Maret
+                @elseif ($bulan == 4)
+                    April
+                @elseif ($bulan == 5)
+                    Mei
+                @elseif ($bulan == 6)
+                    Juni
+                @elseif ($bulan == 7)
+                    Juli
+                @elseif ($bulan == 8)
+                    Agustus
+                @elseif ($bulan == 9)
+                    September
+                @elseif ($bulan == 10)
+                    Oktober
+                @elseif ($bulan == 11)
+                    November
+                    
+                @endif {{ $tahun }}</h1>
         </td>
     </tr>
 </table>

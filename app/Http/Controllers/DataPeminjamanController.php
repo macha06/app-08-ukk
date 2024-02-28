@@ -26,9 +26,19 @@ class DataPeminjamanController extends Controller
             'loan' => $loan
         ]);
     }
-    public function export()
+    public function export(Request $request)
     {
-        return Excel::download(new PeminjamanExport, 'peminjaman.xlsx');
+        $request->validate([
+            'tahun' => 'required|integer|min:2000|max:2099',
+            'bulan' => 'required|integer|min:1|max:12',
+        ]);
+
+        // Ambil data tahun dan bulan dari form
+        $tahun = $request->tahun;
+        $bulan = $request->bulan;
+
+        // Export data ke file Excel
+        return Excel::download(new PeminjamanExport($tahun, $bulan), 'peminjaman_' . $tahun . '_' . $bulan . '.xlsx');
     }
 
     public function indexPeminjam() {
