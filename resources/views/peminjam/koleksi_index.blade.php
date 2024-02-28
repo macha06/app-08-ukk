@@ -58,11 +58,15 @@
                                         <td>{{ $item->buku->penulis }}</td>
                                         <td>{{ $item->buku->penerbit }}</td>
                                         <td>
-                                            
+                                            <form action="{{ route('koleksi.destroy', $item->id) }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">Hapus dari Favorit</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @empty
-                                    
+                                    <td colspan="7" class="text-center">Tidak ada buku yang di Koleksi</td>       
                                 @endforelse
                             </tbody>
                         </table>

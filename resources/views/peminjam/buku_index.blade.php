@@ -49,7 +49,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
-                                        <img src="{{ Storage::url('public/buku/').$item->gambar }}" class="rounded" style="width: 150px">
+                                        <img src="{{ Storage::url('public/buku/').$item->gambar }}" class="rounded" style="width: 100px">
                                     </td>
                                     <td>
                                         @foreach($item->kategori as $category)
@@ -59,10 +59,9 @@
                                     <td>{{ $item->judul }}</td>
                                     <td>{{ $item->penulis }}</td>
                                     <td>
-                                        <a href="{{ route('bukus.show', $item->id) }}" class="btn btn-info">Detail</a>
-                                        <a href="{{ route('buku.pinjam.create', $item->id) }}" class="btn btn-primary">Pinjam</a>
                                         <form action="{{ route('koleksi.store') }}" method="POST">
                                             @csrf
+                                            <a href="{{ route('bukus.show', $item->id) }}" class="btn btn-info">Detail</a>
                                             <input type="hidden" name="buku_id" value="{{ $item->id }}">
                                             <button type="submit" class="btn btn-success">Tambahkan ke Favorit</button>
                                         </form>

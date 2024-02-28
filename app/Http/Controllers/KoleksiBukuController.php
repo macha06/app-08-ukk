@@ -89,6 +89,16 @@ class KoleksiBukuController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $userId = Auth::id();
+
+        // Temukan buku favorit yang akan dihapus berdasarkan ID pengguna dan ID favorit
+        $koleksi = KoleksiBuku::where('user_id', $userId)->findOrFail($id);
+    
+        // Hapus buku favorit dari database
+        $koleksi->delete();
+    
+        // Redirect kembali dengan pesan sukses
+        Alert::success('buku ' . $koleksi->buku->judul . ' di hapus dari koleksi');
+        return redirect()->route('koleksi.index');
     }
 }

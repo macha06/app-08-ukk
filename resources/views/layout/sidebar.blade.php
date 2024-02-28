@@ -252,6 +252,7 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
+                <li class="sidebar-title">Perpustakaan</li> 
                 <li
                     class="sidebar-item {{ \Route::is('bukus.*') ? 'active' : '' }}">
                     <a href="{{ route('bukus.index') }}" class='sidebar-link'>
@@ -267,14 +268,12 @@
                     </a>
                 </li>
                 <li
-                    class="sidebar-item">
-                    <a href="" class='sidebar-link'>
+                    class="sidebar-item {{ \Route::is('koleksi.*') ? 'active' : '' }}">
+                    <a href="{{ route('koleksi.index') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Koleksi Pribadi</span>
                     </a>
                 </li>
-                
-                <li class="sidebar-title">Perpustakaan</li> 
                 <li class="sidebar-title">misc</li>
                 <li
                     class="sidebar-item  ">

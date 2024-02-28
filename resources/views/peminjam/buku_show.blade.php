@@ -22,50 +22,56 @@
     <section class="row">
         <div class="col-4 col-lg-4">
             <div class="row">
-                <div class="col-6">
                     <div class="card">
                         <div class="card-header ">
                             <div class="">
-                                <h5 class="card-title mb-3 text-center">
-                                    Cover
+                                <h5 class="card-title text-center">
+                                    <b>Detail Buku</b>
                                 </h5>
                             </div> 
                         </div>
                         <div class="card-body">
-                            <img src="{{ Storage::url('public/buku/').$model->gambar }}" class="rounded mb-3 " style="width: 220px">
-                            
+                            <div class="row">
+                                <div class="col-6">
+                                    <img src="{{ Storage::url('public/buku/').$model->gambar }}" class="rounded" style="width: 100%">
+                                </div>
+                                <div class="col-6">
+                                    <h5 class="card-title">
+                                        Judul
+                                    </h5>
+                                    <p class="">
+                                        {{ $model->penulis }}
+                                    </p>
+                                    <h5 class="card-title">
+                                        Penulis
+                                    </h5>
+                                    <p class="">
+                                        {{ $model->penulis }}
+                                    </p>
+                                    <h5 class="card-title">
+                                        Penerbit
+                                    </h5>
+                                    <p class="">
+                                        {{ $model->penerbit }}
+                                    </p>
+                                    @foreach($model->kategori as $category)
+                                    <span class="badge bg-info mb-1">{{ $category->nm_kategori }}</span>
+                                    @endforeach
+                                    <div class="mt-3 mb-3"><a href="{{ route('bukus.index') }}" class="btn btn-danger d-block">Kembali</a></div>
+                                    <a href="{{ route('buku.pinjam.create', $model->id) }}" class="btn btn-primary d-block">Pinjam</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="card">
-                        <div class="card-header ">
-                            <div class="">
-                                <h5 class="card-title mb-3 text-center">
-                                    Detail Buku
-                                </h5>
-                            </div> 
-                        </div>
-                        <div class="card-body">
-                            <label for="" style="font-weight:bold;" class="mb-3">Penulis :</label>
-                            <span class="badge bg-primary">{{ $model->penulis }}</span><hr><br>
-                            <label for="" style="font-weight:bold;" class="mb-3">Penerbit :</label>
-                            <span class="badge bg-success">{{ $model->penerbit }}</span><hr><br>
-                            <label for="" style="font-weight:bold;" class="mb-3">Tahun Terbit :</label>
-                            <span class="badge bg-danger">{{ $model->tahun_terbit }}</span><hr><br>
-                            <label for="" style="font-weight:bold;" class="mb-2">Kategori :</label>
-                            <ul>
-                                @foreach($model->kategori as $category)
-                                    <li><span class="badge bg-primary">{{ $category->nm_kategori }}</span></li>
-                                @endforeach
-                            </ul>
-                            <div class="d-grid gap-2 mt-3">
-                                <a href="{{ route('bukus.index') }}" class="btn btn-danger">Kembali</a>
-                                <a href="{{ url('peminjam/buku/ulasan') }}" class="btn btn-info">Berikan Ulasan</a>
+                        <div class="card-footer">
+                            <div class="row">
+                                
+                            </div>
+                            <div class="row">
+                                <label for="" style="font-weight:bold;">Sinopsis :</label>
+                                <p class="card-text" style="scrollbar-width: thin">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam ut laudantium, cupiditate asperiores nemo repellendus repudiandae qui earum similique voluptate vero, facilis facere voluptates veritatis repellat rerum, dolorum nisi illo quia unde ad recusandae ducimus! Iure numquam dignissimos distinctio tempore velit assumenda deserunt ex, deleniti praesentium perspiciatis. Consequuntur praesentium tempore officiis laudantium ipsa quidem dicta molestiae assumenda quas ab? Dolorum, consequuntur maiores sapiente pariatur similique at vel quasi rerum debitis voluptatum mollitia quidem accusamus excepturi atque distinctio facere quaerat? Quisquam aliquid ipsum sunt molestiae officiis, accusamus dignissimos deserunt consectetur nemo, a consequatur impedit ad incidunt beatae voluptates minus delectus ab.</p>
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
         <div class="col-8 col-lg-8">
