@@ -163,10 +163,17 @@
                     </a>
                 </li> 
                 <li
-                    class="sidebar-item {{ \Route::is('peminjaman.index') ? 'active' : '' }}">
+                    class="sidebar-item {{ \Route::is('approve.index') ? 'active' : '' }}">
                     <a href="{{ route('approve.index') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Request Peminjaman</span>
+                    </a>
+                </li> 
+                <li
+                    class="sidebar-item {{ \Route::is('kembalikan.index') ? 'active' : '' }}">
+                    <a href="{{ route('kembalikan.index') }}" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Request Pengembalian</span>
                     </a>
                 </li> 
                 <li class="sidebar-title">misc</li>

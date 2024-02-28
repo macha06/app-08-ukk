@@ -12,11 +12,14 @@ class AprovePeminjamanController extends Controller
     public function index()
     {
         $model = Peminjaman::where('status', 'Menunggu Persetujuan')
-            ->with('user', 'buku')->get();
-        return view('petugas.peminjaman_index',[
-            'routePrefix' => 'peminjaman',
-            'title' => 'Data Peminjaman',
-        ])->with('model', $model);
+            ->with('user', 'buku')->paginate(10);
+        return view('petugas.peminjaman_index',)->with('model', $model);
+    }
+    public function indexKembali()
+    {
+        $model = Peminjaman::where('status', 'Dipinjam')
+            ->with('user', 'buku')->paginate(10);
+        return view('petugas.peminjaman_Kembali',)->with('model', $model);
     }
     public function approveLoan($id)
     {
@@ -36,4 +39,5 @@ class AprovePeminjamanController extends Controller
         Alert::success('Status peminjaman '.' ditolak');
         return redirect()->back();
     }
+    
 }

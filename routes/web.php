@@ -46,15 +46,17 @@ Route::prefix('petugas')->middleware(['auth', 'auth.petugas'])->group(function (
     Route::resource('peminjam', PeminjamController::class);
     Route::resource('buku', BukuController::class);
     Route::get('/peminjaman/approve', [AprovePeminjamanController::class, 'index'])->name('approve.index');
+    Route::get('/peminjaman/kembalikan', [AprovePeminjamanController::class, 'indexKembali'])->name('kembalikan.index');
     Route::post('/peminjaman/{id}/approve', [AprovePeminjamanController::class, 'approveLoan'])->name('approve.loan');
     Route::post('/peminjaman/{id}/reject', [AprovePeminjamanController::class, 'rejectLoan'])->name('reject.loan');
+    Route::post('/peminjaman/{id}/kembalikan', [PeminjamanController::class, 'kembalikan'])->name('buku.kembalikan');
+    
 });
 Route::prefix('peminjam')->middleware(['auth', 'auth.peminjam'])->group(function () {
     Route::get('beranda', [PeminjamBerandaController::class, 'index'])->name('peminjam.beranda');
     Route::resource('bukus', BukuPeminjamController::class);
     Route::get('/buku/{id}/pinjem', [BukuController::class, 'pinjem'])->name('buku.pinjam.create');
     Route::post('/buku/{id}/pinjam', [PeminjamanController::class, 'pinjam'])->name('buku.pinjam');
-    Route::post('/buku/{id}/kembalikan', [PeminjamanController::class, 'kembalikan'])->name('buku.kembalikan');
     Route::get('/buku/pinjaman', [PeminjamanController::class, 'borrowedBooks'])->name('buku.pinjaman');
     Route::get('/peminjaman/{id}/cetak-struk-pdf', [PeminjamanController::class, 'cetakStruk'])->name('peminjaman.cetak_struk_pdf');
 });

@@ -39,34 +39,28 @@
                                     <th>No</th>
                                     <th>Nama Lengkap</th>
                                     <th>Judul Buku</th>
-                                    <th>Alamat Peminjam</th>
                                     <th>Tanggal Pinjam</th>
                                     <th>Tanggal Pengembalian</th>
                                     <th>Aksi</th>        
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($model as $item)
-                                <tr>
+                                    @forelse ($model as $item)
+                                    <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->user->name }}</td>
                                         <td>{{ $item->buku->judul }}</td>
-                                        <td>{{ $item->user->alamat }}</td>
-                                        <td>{{ $item->create_at}}</td>
+                                        <td>{{ $item->created_at->format('d-M-Y') }}</td>
                                         <td>{{ $item->return_date }}</td>
                                         <td>
-                                            <form action="{{ route('approve.loan', $item->id) }}" method="POST">
+                                            <form action="{{ route('buku.kembalikan', ['id' => $item->id]) }}" method="post" onsubmit="return confirm('Apakah buku ini sudah dikembalikan');">
                                                 @csrf
-                                                <button class="btn btn-sm btn-success" type="submit">Setujui</button>
-                                            </form>
-                                            <form action="{{ route('reject.loan', $item->id) }}" method="POST">
-                                                @csrf
-                                                <button class="btn btn-sm btn-danger" type="submit">Tolak</button>
+                                                <button class="btn btn-danger" type="submit">kembalikan</button>
                                             </form>
                                         </td>
                                     </tr>
                                     @empty
-                                        <td colspan="7" class="text-center">Belum ada request Peminjaman</td>
+                                        <td colspan="7" class="text-center">Belum ada Buku yg harus dikembalikan</td>
                                     @endforelse
                             </tbody>
                         </table>

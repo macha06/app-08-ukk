@@ -51,7 +51,7 @@ class PeminjamanController extends Controller
         $buku->save();
 
         Alert::success('Buku ' . $buku->judul . ' dikembalikan');
-        return redirect()->route('buku.pinjaman');
+        return redirect()->route('kembalikan.index');
     }
 
     public function borrowedBooks()
