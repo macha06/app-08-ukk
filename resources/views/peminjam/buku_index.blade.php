@@ -61,7 +61,11 @@
                                     <td>
                                         <a href="{{ route('bukus.show', $item->id) }}" class="btn btn-info">Detail</a>
                                         <a href="{{ route('buku.pinjam.create', $item->id) }}" class="btn btn-primary">Pinjam</a>
-                                        <a href="" class="btn btn-success">Tambahkan ke Koleksi</a>
+                                        <form action="{{ route('koleksi.store') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="buku_id" value="{{ $item->id }}">
+                                            <button type="submit" class="btn btn-success">Tambahkan ke Favorit</button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach

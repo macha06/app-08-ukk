@@ -34,6 +34,8 @@
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Cover</th>
+                                    <th>Kategori</th>
                                     <th>Judul Buku</th>
                                     <th>Penulis</th>
                                     <th>Penerbit</th>
@@ -41,15 +43,27 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Cinderlela</td>
-                                    <td>macha</td>
-                                    <td>machaCorp</td>
-                                    <td>
-                                        <a href="" class="btn btn-danger">Delete</a>
-                                    </td>
-                                </tr>
+                                @forelse ($koleksi as $item)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>
+                                            <img src="{{ Storage::url('public/buku/').$item->buku->gambar }}" class="rounded" style="width: 100px">
+                                        </td>
+                                        <td>
+                                            @foreach($item->buku->kategori as $category)
+                                                <span class="badge bg-primary">{{ $category->nm_kategori }}</span><br>
+                                            @endforeach
+                                        </td>
+                                        <td>{{ $item->buku->judul }}</td>
+                                        <td>{{ $item->buku->penulis }}</td>
+                                        <td>{{ $item->buku->penerbit }}</td>
+                                        <td>
+                                            
+                                        </td>
+                                    </tr>
+                                @empty
+                                    
+                                @endforelse
                             </tbody>
                         </table>
                     </div>

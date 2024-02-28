@@ -11,6 +11,7 @@ use App\Http\Controllers\AprovePeminjamanController;
 use App\Http\Controllers\BukuLandingControlller;
 use App\Http\Controllers\BukuPeminjamController;
 use App\Http\Controllers\DataPeminjamanController;
+use App\Http\Controllers\KoleksiBukuController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PetugasBerandaController;
 use App\Http\Controllers\PeminjamBerandaController;
@@ -62,6 +63,7 @@ Route::prefix('peminjam')->middleware(['auth', 'auth.peminjam'])->group(function
     Route::post('/buku/{id}/pinjam', [PeminjamanController::class, 'pinjam'])->name('buku.pinjam');
     Route::get('/buku/pinjaman', [PeminjamanController::class, 'borrowedBooks'])->name('buku.pinjaman');
     Route::get('/peminjaman/{id}/cetak-struk-pdf', [PeminjamanController::class, 'cetakStruk'])->name('peminjaman.cetak_struk_pdf');
+    Route::resource('koleksi', KoleksiBukuController::class);
 });
 Route::get('logout', function () {
     Auth::logout();
