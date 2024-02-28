@@ -163,8 +163,8 @@
                     </a>
                 </li> 
                 <li
-                    class="sidebar-item {{ \Route::is('buku.*') ? 'active' : '' }}">
-                    <a href="{{ route('peminjam.index') }}" class='sidebar-link'>
+                    class="sidebar-item {{ \Route::is('petugas.peminjaman') ? 'active' : '' }}">
+                    <a href="{{ route('petugas.peminjaman') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Peminjaman</span>
                     </a>
@@ -182,6 +182,11 @@
                         <i class="bi bi-grid-fill"></i>
                         <span>Request Pengembalian</span>
                     </a>
+                </li> 
+                <li class="sidebar-item">
+                    <div>
+                        
+                    </div>
                 </li> 
                 <li class="sidebar-title">misc</li>
                 <li

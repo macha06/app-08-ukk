@@ -82,5 +82,12 @@ class PeminjamanController extends Controller
             'peminjaman' => $peminjaman
         ]));
     }
+
+    public function index(){
+        $peminjaman = Peminjaman::with('user', 'buku')->paginate(10);
+        return view('petugas.peminjaman', [
+            'peminjaman' => $peminjaman
+        ]);
+    }
     
 }

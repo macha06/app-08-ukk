@@ -51,6 +51,8 @@ Route::prefix('petugas')->middleware(['auth', 'auth.petugas'])->group(function (
     Route::post('/peminjaman/{id}/approve', [AprovePeminjamanController::class, 'approveLoan'])->name('approve.loan');
     Route::post('/peminjaman/{id}/reject', [AprovePeminjamanController::class, 'rejectLoan'])->name('reject.loan');
     Route::post('/peminjaman/{id}/kembalikan', [PeminjamanController::class, 'kembalikan'])->name('buku.kembalikan');
+    Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('petugas.peminjaman');
+    Route::post('peminjaman/export', [DataPeminjamanController::class, 'export'])->name('admin.peminjaman.export');
     
 });
 Route::prefix('peminjam')->middleware(['auth', 'auth.peminjam'])->group(function () {
