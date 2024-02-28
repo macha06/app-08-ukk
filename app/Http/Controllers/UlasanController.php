@@ -33,6 +33,6 @@ class UlasanController extends Controller
         
 
         Alert::success('Ulasan untuk buku' . $buku->judul . ' ditambahkan');
-        return redirect()->route('buku.detail', $buku->id);
+        return redirect()->route('bukus.show', $buku->id);
     }
 }
