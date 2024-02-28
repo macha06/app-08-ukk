@@ -38,6 +38,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     Route::resource('buku', BukuController::class);
     Route::resource('kategori', KategoriController::class);
     Route::get('peminjaman', [DataPeminjamanController::class, 'index'])->name('admin.peminjaman');
+    Route::get('peminjaman/export', [DataPeminjamanController::class, 'export'])->name('admin.peminjaman.export');
 });
 
 

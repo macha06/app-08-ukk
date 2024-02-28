@@ -163,6 +163,13 @@
                     </a>
                 </li> 
                 <li
+                    class="sidebar-item {{ \Route::is('buku.*') ? 'active' : '' }}">
+                    <a href="{{ route('peminjam.index') }}" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Peminjaman</span>
+                    </a>
+                </li> 
+                <li
                     class="sidebar-item {{ \Route::is('approve.index') ? 'active' : '' }}">
                     <a href="{{ route('approve.index') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>

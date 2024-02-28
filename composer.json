@@ -14,6 +14,7 @@
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.4",
         "laravelcollective/html": "^6.4",
+        "maatwebsite/excel": "^3.1.48",
         "realrashid/sweet-alert": "^7.1"
     },
     "require-dev": {

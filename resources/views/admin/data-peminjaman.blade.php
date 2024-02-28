@@ -5,6 +5,7 @@
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
                 <h3>Data Peminjaman</h3>
+                <a href="{{ route('admin.peminjaman.export') }}" class="btn btn-sm btn-primary mt-5"><i class="bi bi-file-earmark-spreadsheet">Download Excel</i></a>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -14,7 +15,7 @@
                     </ol>
                 </nav>
             </div>
-        </div>
+        </div> 
     </div>
 </div> 
 <div class="page-content"> 
