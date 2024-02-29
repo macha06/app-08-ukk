@@ -11,7 +11,7 @@ class AdminExport implements FromCollection, WithTitle
     
     public function title(): string
     {
-        return 'Admin_Users';
+        return 'Admin Users';
     }
     public function collection()
     {
