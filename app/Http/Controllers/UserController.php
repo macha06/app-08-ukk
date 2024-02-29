@@ -11,16 +11,40 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $title = 'Delete Data!';
         $text = "Are you sure you want to delete?";
         confirmDelete($title, $text);
         
-        $model = Model::latest()->paginate(10);
+        // Ambil data dari input form
+        $akses = $request->input('akses');
+        $keyword = $request->input('keyword');
+
+        // Query untuk mencari pengguna berdasarkan akses dan semua bidang
+        
+        if($akses){
+            $model = Model::where('akses', $akses)->paginate(10);
+        } elseif ($akses && $keyword) {
+            $model = Model::where('akses', $akses)
+                ->where('name', 'like', "%$keyword%")
+                ->orWhere('email', 'like', "%$keyword%")
+                ->orWhere('alamat', 'like', "%$keyword%")
+                ->orWhere('telepon', 'like', "%$keyword%")
+                ->paginate(10);
+        }elseif($keyword){
+            $model = Model::where('name', 'like', "%$keyword%")
+                ->orWhere('email', 'like', "%$keyword%")
+                ->orWhere('alamat', 'like', "%$keyword%")
+                ->orWhere('telepon', 'like', "%$keyword%")
+                ->paginate(10);
+        } else {
+            $model = Model::paginate(10);
+        }
         return view('admin.user_index',[
             'routePrefix' => 'user',
             'title' => 'Data User',

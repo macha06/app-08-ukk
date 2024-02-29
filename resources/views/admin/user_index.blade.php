@@ -30,7 +30,20 @@
                         <a href="{{ route('export.users') }}" class="btn btn-success"><i class="fas fa-file-excel"> </i> Unduh Excel</a>
                     </div>
                     <div class="form-outline" data-mdb-input-init>
-                        <input type="search" id="form1" class="form-control mt-3" placeholder="Search...." aria-label="Search" />
+                        <form action="{{ route('user.index') }}" method="GET">
+                            <div class="mb-3 mt-3 d-flex justify-content-between">
+                                <select class="form-select w-25" name="akses" id="">
+                                    <option value="">All</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="petugas">petugas</option>
+                                    <option value="peminjam">Peminjam</option>
+                                </select>
+                                <div class="input-group">
+                                    <input type="search" id="form1" name="keyword" class="form-control" placeholder="Search...." aria-label="Search" />
+                                    <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="card-body">
