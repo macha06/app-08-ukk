@@ -22,11 +22,12 @@
         <div class="col-12 col-lg-12">
             <div class="card">
                 <div class="card-header ">
+                    <h5 class="card-title">
+                        Table Buku
+                    </h5>
                     <div class="d-flex justify-content-between">
-                        <h5 class="card-title">
-                            Table Buku
-                        </h5>
-                        <a href="{{ route('buku.create') }}" class="btn btn-primary">Tambah data</a>
+                        <a href="{{ route('buku.create') }}" class="btn btn-primary"> <i class="fas fa-plus"></i> Tambah data</a>
+                        <a href="{{ route('export.buku') }}" class="btn btn-success"><i class="fas fa-file-excel"> </i> Unduh Excel</a>
                     </div>
                     <div class="form-outline" data-mdb-input-init>
                         <input type="search" id="form1" class="form-control mt-3" placeholder="Search...." aria-label="Search" />
@@ -38,13 +39,13 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Gambar Cover</th>
                                     <th>Judul</th>
+                                    <th>Kategori</th>
                                     <th>penulis</th>
                                     <th>Penerbit</th>
                                     <th>Tahun Terbit</th>
-                                    <th>Gambar Cover</th>
                                     <th>Deskripsi</th>
-                                    <th>Kategori</th>
                                     <th>Stok</th>
                                     <th>aksi</th>
                                 </tr>
@@ -53,14 +54,10 @@
                                 @foreach ($model as $item)     
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $item->judul }}</td>
-                                    <td>{{ $item->penulis }}</td>
-                                    <td>{{ $item->penerbit }}</td>
-                                    <td>{{ $item->tahun_terbit }}</td>
                                     <td>
                                         <img src="{{ Storage::url('public/buku/').$item->gambar }}" class="rounded" style="width: 150px">
                                     </td>
-                                    <td>{{ $item->deskripsi }}</td>
+                                    <td>{{ $item->judul }}</td>
                                     <td>
                                         <ul>
                                             @foreach($item->kategori as $category)
@@ -68,6 +65,10 @@
                                             @endforeach
                                         </ul>
                                     </td>
+                                    <td>{{ $item->penulis }}</td>
+                                    <td>{{ $item->penerbit }}</td>
+                                    <td>{{ $item->tahun_terbit }}</td>
+                                    <td>{{ $item->deskripsi }}</td>
                                     <td>{{ $item->stok }}</td>
                                     <td>                 
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('buku.destroy', $item->id) }}" method="POST">

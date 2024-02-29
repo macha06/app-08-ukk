@@ -16,6 +16,7 @@
             <th class="text-center" width="500px">Alamat</th>
             <th class="text-center" width="200px">Nomor Telepon</th>
             <th class="text-center" width="200px">Email</th>
+            <th>Dibuat Tanggal</th>
             <!-- Add other header columns as needed -->
         </tr>
     </thead>
@@ -26,6 +27,7 @@
                 <td>{{ $user->alamat }}</td>
                 <td style="text-align: left">{{ $user->telepon }}</td>
                 <td>{{ $user->email }}</td>
+                <td>{{ $user->created_at }}</td>
                 <!-- Add other data columns as needed -->
             </tr>
         @endforeach

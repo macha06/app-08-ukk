@@ -38,7 +38,7 @@ class DataPeminjamanController extends Controller
         $bulan = $request->bulan;
 
         // Export data ke file Excel
-        return Excel::download(new PeminjamanExport($tahun, $bulan), 'peminjaman_' . $tahun . '_' . $bulan . '.xlsx');
+        return Excel::download(new PeminjamanExport($tahun, $bulan), 'Data_peminjaman_Perpustakaan_M-Puss_' . $tahun . '_' . $bulan . '.xlsx');
     }
 
     public function indexPeminjam() {

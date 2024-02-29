@@ -45,6 +45,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     Route::get('peminjaman', [DataPeminjamanController::class, 'index'])->name('admin.peminjaman');
     Route::post('peminjaman/export', [DataPeminjamanController::class, 'export'])->name('admin.peminjaman.export');
     Route::get('/export-users', [ExportController::class, 'exportUsers'])->name('export.users');
+    Route::get('/export-buku', [ExportController::class, 'exportBuku'])->name('export.buku');
 });
 
 
@@ -60,6 +61,7 @@ Route::prefix('petugas')->middleware(['auth', 'auth.petugas'])->group(function (
     Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('petugas.peminjaman');
     Route::post('peminjaman/export', [DataPeminjamanController::class, 'export'])->name('admin.peminjaman.export');
     Route::get('peminjaman/approve/{id}/tolak', [AprovePeminjamanController::class, 'indexTolak'])->name('approve.tolak');
+    Route::get('/export-buku', [ExportController::class, 'exportBuku'])->name('export.buku');
 });
 Route::prefix('peminjam')->middleware(['auth', 'auth.peminjam'])->group(function () {
     Route::get('beranda', [PeminjamBerandaController::class, 'index'])->name('peminjam.beranda');
