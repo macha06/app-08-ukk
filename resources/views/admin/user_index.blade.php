@@ -22,11 +22,12 @@
         <div class="col-12 col-lg-12">
             <div class="card">
                 <div class="card-header ">
+                    <h5 class="card-title">
+                        Table User
+                    </h5>         
                     <div class="d-flex justify-content-between">
-                        <h5 class="card-title">
-                            Table User
-                        </h5>         
-                        <a href="{{ route($routePrefix.'.create') }}" class="btn btn-primary">Tambah Data</a>
+                        <a href="{{ route($routePrefix.'.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i> Tambah Data</a>
+                        <a href="{{ route('export.users') }}" class="btn btn-success"><i class="fas fa-file-excel"> </i> Unduh Excel</a>
                     </div>
                     <div class="form-outline" data-mdb-input-init>
                         <input type="search" id="form1" class="form-control mt-3" placeholder="Search...." aria-label="Search" />

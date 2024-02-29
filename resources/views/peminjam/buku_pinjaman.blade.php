@@ -241,7 +241,7 @@
                                         <th>Judul Buku</th>
                                         <th>Tanggal_peminjaman</th>
                                         <th>Alasan</th>
-                                        <th>Status</th>
+                                        <th>Status</th> 
                                     </tr>
                                 </thead>
                                 <tbody>

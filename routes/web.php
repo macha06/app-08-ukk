@@ -16,8 +16,10 @@ use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PetugasBerandaController;
 use App\Http\Controllers\PeminjamBerandaController;
 use App\Http\Controllers\UlasanController;
+use App\Exports\UserExport;
 use App\Models\Buku;
 use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Controllers\ExportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +44,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     Route::resource('kategori', KategoriController::class);
     Route::get('peminjaman', [DataPeminjamanController::class, 'index'])->name('admin.peminjaman');
     Route::post('peminjaman/export', [DataPeminjamanController::class, 'export'])->name('admin.peminjaman.export');
+    Route::get('/export-users', [ExportController::class, 'exportUsers'])->name('export.users');
 });
 
 
