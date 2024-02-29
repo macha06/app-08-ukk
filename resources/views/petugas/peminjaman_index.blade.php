@@ -58,10 +58,7 @@
                                             <form action="{{ route('approve.loan', $item->id) }}" method="POST">
                                                 @csrf
                                                 <button class="btn btn-sm btn-success" type="submit">Setujui</button>
-                                            </form>
-                                            <form action="{{ route('reject.loan', $item->id) }}" method="POST">
-                                                @csrf
-                                                <button class="btn btn-sm btn-danger" type="submit">Tolak</button>
+                                                <a href="{{ route('approve.tolak', $item->id) }}" class="btn btn-sm btn-danger">Tolak</a>
                                             </form>
                                         </td>
                                     </tr>

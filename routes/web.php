@@ -56,7 +56,7 @@ Route::prefix('petugas')->middleware(['auth', 'auth.petugas'])->group(function (
     Route::post('/peminjaman/{id}/kembalikan', [PeminjamanController::class, 'kembalikan'])->name('buku.kembalikan');
     Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('petugas.peminjaman');
     Route::post('peminjaman/export', [DataPeminjamanController::class, 'export'])->name('admin.peminjaman.export');
-    
+    Route::get('peminjaman/approve/{id}/tolak', [AprovePeminjamanController::class, 'indexTolak'])->name('approve.tolak');
 });
 Route::prefix('peminjam')->middleware(['auth', 'auth.peminjam'])->group(function () {
     Route::get('beranda', [PeminjamBerandaController::class, 'index'])->name('peminjam.beranda');
@@ -68,6 +68,7 @@ Route::prefix('peminjam')->middleware(['auth', 'auth.peminjam'])->group(function
     Route::resource('koleksi', KoleksiBukuController::class);
     Route::get('/buku/{buku_id}/ulasan', [UlasanController::class, 'create'])->name('ulasan.create');
     Route::post('/buku/ulasan', [UlasanController::class, 'store'])->name('ulasan.store');
+    
 });
 Route::get('logout', function () {
     Auth::logout();

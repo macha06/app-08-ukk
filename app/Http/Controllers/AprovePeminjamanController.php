@@ -30,14 +30,22 @@ class AprovePeminjamanController extends Controller
         Alert::success('Status peminjaman '.' disetujui');
         return redirect()->back();
     }
-    public function rejectLoan($id)
+    public function rejectLoan(Request $request, $id)
     {
         $loan = Peminjaman::findOrFail($id);
         $loan->status = 'Ditolak';
+        $loan->komentar = $request->komentar;
         $loan->save();
         
         Alert::success('Status peminjaman '.' ditolak');
-        return redirect()->back();
+        return redirect()->route('approve.index');
+    }
+
+    public function indexTolak($id)
+    {
+        $loan = Peminjaman::findOrFail($id);
+        return view('petugas.peminjaman_tolak')->with('model', $loan);
+
     }
     
 }

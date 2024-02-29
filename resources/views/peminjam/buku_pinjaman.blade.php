@@ -240,6 +240,7 @@
                                         <th>Cover</th>
                                         <th>Judul Buku</th>
                                         <th>Tanggal_peminjaman</th>
+                                        <th>Alasan</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
@@ -252,6 +253,7 @@
                                         </td>
                                         <td>{{ $item->buku->judul }}</td>
                                         <td><span class="badge bg-primary">{{ $item->created_at->format('d-M-Y') }}</span></td>
+                                        <td>{{ $item->komentar }}</td>
                                         <td>
                                             @if ($item->status == 'Dipinjam')
                                                 <span class="badge bg-warning">{{ $item->status }}</span>
