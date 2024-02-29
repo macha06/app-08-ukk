@@ -17,7 +17,8 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = 'peminjam/beranda';
+    
+    public const HOME ='logout';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.

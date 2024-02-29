@@ -17,6 +17,7 @@ use App\Http\Controllers\PetugasBerandaController;
 use App\Http\Controllers\PeminjamBerandaController;
 use App\Http\Controllers\UlasanController;
 use App\Models\Buku;
+use RealRashid\SweetAlert\Facades\Alert;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,5 +71,6 @@ Route::prefix('peminjam')->middleware(['auth', 'auth.peminjam'])->group(function
 });
 Route::get('logout', function () {
     Auth::logout();
+    Alert::success('Success', 'Logout Success');
     return redirect('/login');
 });

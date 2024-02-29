@@ -16,7 +16,7 @@
         <li><a href="#">Login</a></li>
       </ul>
     </div>
-
+    @include('sweetalert::alert')
     <section class="login">
       <h3>Login</h3>
       <div class="login-form">

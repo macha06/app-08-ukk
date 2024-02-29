@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -30,7 +34,6 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
-
     /**
      * Create a new controller instance.
      *
@@ -73,5 +76,13 @@ class RegisterController extends Controller
             'telepon' => $data['telepon'],
             'password' => Hash::make($data['password']),
         ]);
+
     }
+    protected function registered(Request $request, $user)
+    {
+        Alert::success('Register Success');
+        return redirect()->route('login');
+    }
+
+    
 }

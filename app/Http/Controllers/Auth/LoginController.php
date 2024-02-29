@@ -7,6 +7,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class LoginController extends Controller
 {
@@ -43,11 +44,15 @@ class LoginController extends Controller
 
     public function authenticated(Request $request, $user)
     {
+        $user = Auth::user();
         if($user->akses == 'petugas'){
+            Alert::success('Login Berhasil', 'Selamat Datang ' . $user->name);
             return redirect()->route('petugas.beranda');
         } elseif($user->akses == 'admin'){
+            Alert::success('Login Berhasil', 'Selamat Datang ' . $user->name);
             return redirect()->route('admin.beranda');
         } elseif($user->akses == 'peminjam'){
+            Alert::success('Login Berhasil', 'Selamat Datang ' . $user->name);
             return redirect()->route('peminjam.beranda');
         } else{
             Auth::logout();
