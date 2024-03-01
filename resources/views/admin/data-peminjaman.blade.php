@@ -5,18 +5,25 @@
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
                 <h3>Data Peminjaman</h3>
-                <div class="row">
-                    <form action="{{ route('admin.peminjaman.export') }}" method="POST" target="_blank">
-                    @csrf
-                        <div class="col-lg-4 mb-1 mt-3">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Tahun</span>
-                                <input type="number" class="form-control" name="tahun" placeholder="Tahun"
-                                    aria-label="Username" aria-describedby="basic-addon1">
-                            </div>
-                        </div>
-                        <div class="col-lg-4 mb-1 mt-3">
-                            <div class="input-group mb-3">
+            </div>
+            <div class="col-12 col-md-6 order-md-2 order-first">
+                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{ route('admin.beranda') }}">Dashboard</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Data Peminjaman</li>
+                    </ol>
+                </nav>
+            </div>
+        </div> 
+    </div>
+</div> 
+<div class="page-content"> 
+    <section class="row">
+        <div class="col-12 col-lg-12">
+            <form action="{{ route('admin.peminjaman.export') }}" method="POST" target="_blank">
+                @csrf
+                <div class="d-flex justify-content-start mb-3">
+                            <div class="input-group w-25 " style="margin-right: 10px">
                                 <span class="input-group-text" id="basic-addon1">Bulan</span>
                                 <select class="form-select" name="bulan" id="">
                                     <option value="1">Januari</option>
@@ -33,24 +40,19 @@
                                     <option value="12">Desember</option>
                                 </select>
                             </div>
+                            <div class="input-group w-25">
+                                <span class="input-group-text" id="basic-addon1">Tahun</span>
+                                <input type="number" class="form-control" name="tahun" placeholder="Tahun"
+                                    aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group style="margin-left: 10px">
+                                <button class="btn btn-primary" type="submit">Export to Excel</button>
+                            </div>
                         </div>
-                        <div class="col-lg-4 mb-1 mt-3">
-                            <button class="btn btn-primary" type="submit">Export to Excel</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-12 col-md-6 order-md-2 order-first">
-                <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.beranda') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Data Peminjaman</li>
-                    </ol>
-                </nav>
-            </div>
-        </div> 
-    </div>
-</div> 
+                </form>
+        </div>
+    </section>
+</div>
 <div class="page-content"> 
     <section class="row">
         <div class="col-12 col-lg-12">

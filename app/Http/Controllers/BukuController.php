@@ -14,13 +14,35 @@ class BukuController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $model = Model::latest()->paginate(10);
+        $query = Model::query();
+
+        if ($request->has('search')) {
+            $searchTerm = $request->input('search');
+            $query->where(function ($query) use ($searchTerm) {
+            $query->where('buku.judul', 'like', '%' . $searchTerm . '%')
+                  ->orWhere('buku.penulis', 'like', '%' . $searchTerm . '%')
+                  ->orWhere('buku.penerbit', 'like', '%' . $searchTerm . '%');
+                });
+            }
+            
+        // Pencarian berdasarkan kategori
+        if ($request->has('kategori')) {
+            $kategori = $request->input('kategori');
+            $query->whereHas('kategori', function ($query) use ($kategori) {
+                $query->whereIn('kategori.id', $kategori);
+            }); 
+    }
+    
+        $model = $query->paginate(10);
+        $kategoris = Kategori::latest()->get();
         return view('admin.buku_index',[
             'routePrefix' => 'buku',
             'title' => 'Data Buku',
-        ])->with('model', $model);
+            'model' => $model,
+            'kategoris' => $kategoris
+        ]);
     }
 
     public function pinjem(Request $request, $id)

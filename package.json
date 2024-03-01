@@ -14,6 +14,7 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
+        "choices.js": "^10.2.0",
         "sweetalert2": "^11.10.5",
         "swiper": "^11.0.6"
     }

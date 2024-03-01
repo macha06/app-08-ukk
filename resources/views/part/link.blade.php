@@ -14,3 +14,4 @@
   rel="stylesheet"
 />
 <!-- MDB -->
+<link rel="stylesheet" href="{{ asset('') }}assets/extensions/choices.js/public/assets/styles/choices.css">

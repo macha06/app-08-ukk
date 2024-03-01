@@ -10,3 +10,5 @@
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.1.0/mdb.umd.min.js"
 ></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="{{ asset('') }}assets/extensions/choices.js/public/assets/scripts/choices.js"></script>
+<script src="{{ asset('') }}assets/static/js/pages/form-element-select.js"></script>

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
+use App\Models\Kategori;
+use App\Models\Peminjaman;
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User;
+use Illuminate\Database\Eloquent\Model;
 
 class AdminBerandaController extends Controller
 {
@@ -16,7 +18,9 @@ class AdminBerandaController extends Controller
             'routePrefix' => 'buku',
             'title' => 'Data Buku',
             'user' => User::all(),
-            'buku' => Buku::all()
+            'buku' => Buku::all(),
+            'peminjaman' => Peminjaman::all(),
+            'kategori' => Kategori::all()
         ]);
     }
 }

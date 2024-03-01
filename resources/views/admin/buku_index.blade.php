@@ -16,7 +16,39 @@
             </div>
         </div>
     </div>
-</div> 
+</div>
+<section class="multiple-choices">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                            <form action="{{ route('buku.index') }}" method="GET">
+                                <div class="form-group">
+                                    <label for="choices-multiple-remove-button">Kategori</label>
+                                    <select class="choices form-select multiple-remove" name="kategori[]" multiple="multiple">
+                                        <optgroup label="Pilih Kategori">
+                                            @foreach ($kategoris as $item) 
+                                                <option value="{{ $item->id }}">{{ $item->nm_kategori }}</option>
+                                            @endforeach
+                                        </optgroup>
+                                    </select>
+                                    <div class="input-group">
+                                        <input type="search" id="form1" name="search" class="form-control" placeholder="Search...." aria-label="Search" />
+                                        <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <div class="page-content"> 
     <section class="row">
         <div class="col-12 col-lg-12">
@@ -28,9 +60,6 @@
                     <div class="d-flex justify-content-between">
                         <a href="{{ route('buku.create') }}" class="btn btn-primary"> <i class="fas fa-plus"></i> Tambah data</a>
                         <a href="{{ route('export.buku') }}" class="btn btn-success"><i class="fas fa-file-excel"> </i> Unduh Excel</a>
-                    </div>
-                    <div class="form-outline" data-mdb-input-init>
-                        <input type="search" id="form1" class="form-control mt-3" placeholder="Search...." aria-label="Search" />
                     </div>
                 </div>
                 <div class="card-body">
