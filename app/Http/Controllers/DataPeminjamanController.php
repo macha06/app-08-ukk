@@ -9,7 +9,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class DataPeminjamanController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         // Ambil semua data peminjaman
         $loans = Peminjaman::with('user', 'buku')

@@ -15,10 +15,21 @@ class PeminjamController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        
-        $model = Model::where('akses', 'peminjam')->paginate(10);
+        $search = $request->input('search');
+
+        // Query untuk mencari pengguna berdasarkan akses
+        if($search) {
+            $model = Model:: where('akses', 'peminjam')
+                ->where('name', 'like', "%$search%")
+                ->orWhere('email', 'like', "%$search%")
+                ->orWhere('alamat', 'like', "%$search%")
+                ->orWhere('telepon', 'like', "%$search%")
+                ->paginate(10);
+        } else {
+            $model = Model::where('akses', 'peminjam')->paginate(10);
+        }
         return view('petugas.user_index',[
             'routePrefix' => 'user',
             'title' => 'Data User',

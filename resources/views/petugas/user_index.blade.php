@@ -28,7 +28,12 @@
                         </h5>         
                     </div>
                     <div class="form-outline" data-mdb-input-init>
-                        <input type="search" id="form1" class="form-control mt-3" placeholder="Search...." aria-label="Search" />
+                        <form action="{{ route('peminjam.index') }}" method="GET">
+                            <div class="input-group">
+                                <input type="search" id="form1" name="search" class="form-control" placeholder="Search...." aria-label="Search" />
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <div class="card-body">

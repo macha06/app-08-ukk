@@ -57,9 +57,9 @@
                     <h5 class="card-title">
                         Table Buku
                     </h5>
-                    <div class="d-flex justify-content-between">
-                        <a href="{{ route('buku.create') }}" class="btn btn-primary"> <i class="fas fa-plus"></i> Tambah data</a>
-                        <a href="{{ route('export.buku') }}" class="btn btn-success"><i class="fas fa-file-excel"> </i> Unduh Excel</a>
+                    <div class="d-flex justify-content-start">
+                        <a href="{{ route('buku.create') }}" class="btn btn-primary me-2"> <i class="fas fa-user-plus"></i></a>
+                        <a href="{{ route('export.buku') }}" class="btn btn-success"><i class="fas fa-file-excel"> </i></a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -101,11 +101,11 @@
                                     <td>{{ $item->stok }}</td>
                                     <td>                 
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('buku.destroy', $item->id) }}" method="POST">
-                                            <a href="{{ route('buku.edit', $item->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                                            <a href="{{ route('buku.edit', $item->id) }}" class="btn btn-sm btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
-                                            <a href="" class="btn btn-sm btn-primary">Lihat Ulasan</a>
+                                            <button type="submit" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
+                                            <a href="" class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i></a>
                                         </form>
                                     </td>
                                 </tr>
