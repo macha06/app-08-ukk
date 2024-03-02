@@ -72,6 +72,7 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
+            'username' => 'required|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8',
             'akses' => 'required',
@@ -81,6 +82,7 @@ class UserController extends Controller
 
         $model = Model::create([
             'name' => $request->name,
+            'username' => $request->username,
             'email' => $request->email,
             'akses' => $request->akses,
             'alamat' => $request->alamat,
@@ -139,6 +141,7 @@ class UserController extends Controller
     {
         $requestData = $request->validate([
             'name' => 'required',
+            'username' => 'required',
             'email' => 'required|unique:users,email,'.$id,
             'akses' => 'required',
             'alamat' => 'required',

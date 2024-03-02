@@ -24,6 +24,15 @@
                 <div class="card-header">
                     <h4 class="card-title">Tambah User</h4>
                 </div>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <div class="card-content">
                     <div class="card-body">
                         {!! Form::model($models, ['route' => ['user.update', $models->id], 'method' => 'PUT']) !!}
@@ -36,6 +45,18 @@
                                             <input type="text" id="first-name-vertical" class="form-control"
                                                 name="name" value="{{ $models->name }}">
                                             @error('name')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label for="username">Username</label>
+                                            <input type="text" id="first-username-vertical" class="form-control"
+                                                name="username" value="{{ $models->username }}">
+                                            @error('username')
                                                 <div class="alert alert-danger mt-2">
                                                     {{ $message }}
                                                 </div>

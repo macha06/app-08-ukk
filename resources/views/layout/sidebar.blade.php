@@ -83,7 +83,7 @@
                 <li class="sidebar-title">misc</li>
                 <li
                     class="sidebar-item  {{ \Route::is('admin.profile.*') ? 'active' : '' }}">
-                    <a href="{{ route('admin.profile.index') }}" class='sidebar-link'>
+                    <a href="{{ route('profile.index') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Profile</span>
                     </a>

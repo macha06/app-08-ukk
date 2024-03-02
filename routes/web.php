@@ -21,6 +21,7 @@ use App\Http\Controllers\DataPeminjamanController;
 use App\Http\Controllers\PetugasBerandaController;
 use App\Http\Controllers\PeminjamBerandaController;
 use App\Http\Controllers\AprovePeminjamanController;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,8 +48,7 @@ Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
     Route::post('peminjaman/export', [DataPeminjamanController::class, 'export'])->name('admin.peminjaman.export');
     Route::get('/export-users', [ExportController::class, 'exportUsers'])->name('export.users');
     Route::get('/export-buku', [ExportController::class, 'exportBuku'])->name('export.buku');
-    Route::get('profile', [ProfileController::class, 'index'])->name('admin.profile.index');
-    Route::get('profile/{id}/edit', [ProfileController::class, 'edit'])->name('admin.profile.edit');
+    Route::resource('profile', ProfileController::class);
 });
 
 
@@ -65,8 +65,6 @@ Route::prefix('petugas')->middleware(['auth', 'auth.petugas'])->group(function (
     Route::post('peminjaman/export', [DataPeminjamanController::class, 'export'])->name('admin.peminjaman.export');
     Route::get('peminjaman/approve/{id}/tolak', [AprovePeminjamanController::class, 'indexTolak'])->name('approve.tolak');
     Route::get('/export-buku', [ExportController::class, 'exportBuku'])->name('export.buku');
-    Route::get('profile', [ProfileController::class, 'index'])->name('petugas.profile.index');
-    Route::get('profile/{id}/edit', [ProfileController::class, 'edit'])->name('petugas.profile.edit');
 });
 Route::prefix('peminjam')->middleware(['auth', 'auth.peminjam'])->group(function () {
     Route::get('beranda', [PeminjamBerandaController::class, 'index'])->name('peminjam.beranda');
@@ -78,9 +76,6 @@ Route::prefix('peminjam')->middleware(['auth', 'auth.peminjam'])->group(function
     Route::resource('koleksi', KoleksiBukuController::class);
     Route::get('/buku/{buku_id}/ulasan', [UlasanController::class, 'create'])->name('ulasan.create');
     Route::post('/buku/ulasan', [UlasanController::class, 'store'])->name('ulasan.store');
-    Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
-    Route::get('profile/{id}/edit', [ProfileController::class, 'edit'])->name('profile.edit');
-    
 });
 Route::get('logout', function () {
     Auth::logout();

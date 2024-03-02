@@ -57,8 +57,74 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                
-                                <button type="button" class="btn btn-primary me-1 mb-1 float-end"> <i class="fa fa-edit"></i></button>
+                                <form action="{{ route('profile.update', $user->id) }}" method="post" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="mb-3">
+                                        <label for="nik" class="form-label">Nik</label>
+                                        <input type="text" class="form-control" id="nik" name="nik" value="{{ $user->nik }}">
+                                        @error('nik')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Nama Lengkap</label>
+                                        <input type="text" class="form-control" id="name" name="name" value="{{ $user->name }}">
+                                        @error('name')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="username" class="form-label">Username</label>
+                                        <input type="text" class="form-control" id="username" name="username" value="{{ $user->username }}">
+                                        @error('username')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="alamat" class="form-label">Alamat</label>
+                                        <input type="text" class="form-control" id="alamat" name="alamat" value="{{ $user->alamat }}">
+                                        @error('alamat')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="telepon" class="form-label">Telepon</label>
+                                        <input type="text" class="form-control" id="telepon" name="telepon" value="{{ $user->telepon }}">
+                                        @error('telepon')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="text" class="form-control" id="email" name="email" value="{{ $user->email }}">
+                                        @error('email')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="avatar" class="form-label">Foto Profile</label>
+                                        <input type="file" class="form-control" id="avatar" name="avatar" value="{{ $user->avatar }}">
+                                        @error('avatar')
+                                            <div class="alert alert-danger mt-2">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                    <button type="submit" class="btn btn-primary me-1 mb-1 float-end">Update</button> 
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -66,108 +132,6 @@
             </div>
         </div>
     </div>
-    @if ($user->akses == 'admin')
-
-    @elseif ($user->akses == 'petugas')
-
-    @else
-    <div class="page-content"> 
-        <section class="row">
-            <div class="col-6 col-lg-6">
-                <div class="card">
-                    <div class="card-header ">
-                        <div class="d-flex justify-content-between">
-                            <h5 class="card-title">
-                                Daftar Buku yg dipinjam
-                            </h5>
-                        </div>
-                        <div class="form-outline" data-mdb-input-init>
-                            <input type="search" id="form1" class="form-control mt-3" placeholder="Search...." aria-label="Search" />
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive datatable-minimal">
-                            <table class="table" id="table2">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Cover</th>
-                                        <th>Judul Buku</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($borrowedBooks as $item)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>
-                                                <img src="{{ Storage::url('public/buku/').$item->buku->gambar }}" class="rounded" style="width: 100px">
-                                            </td>
-                                            <td>{{ $item->buku->judul }}</td>
-                                            <td>
-                                                <span class="badge bg-success" style="font-size: 19px">{{ $item->status }}</span>
-                                        </tr>
-                                    @empty
-                                    <tr>
-                                        <td colspan="4">Pengguna Belum Meminjam Buku/Sudah Dikembalikan</td>
-                                    </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
-                            {{ $borrowedBooks->links() }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-6 col-lg-6">
-                <div class="card">
-                    <div class="card-header ">
-                        <div class="d-flex justify-content-between">
-                            <h5 class="card-title">
-                                Daftar Buku yg Sudah Dikembalikan
-                            </h5>
-                        </div>
-                        <div class="form-outline" data-mdb-input-init>
-                            <input type="search" id="form1" class="form-control mt-3" placeholder="Search...." aria-label="Search" />
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive datatable-minimal">
-                            <table class="table" id="table2">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Cover</th>
-                                        <th>Judul Buku</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($book as $item)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>
-                                                <img src="{{ Storage::url('public/buku/').$item->buku->gambar }}" class="rounded" style="width: 100px">
-                                            </td>
-                                            <td>{{ $item->buku->judul }}</td>
-                                            <td>
-                                                <span class="badge bg-success" style="font-size: 19px">{{ $item->status }}</span>
-                                        </tr>
-                                    @empty
-                                    <tr>
-                                        <td colspan="4">Pengguna Belum Meminjam Buku/Mengembalikan buku Buku</td>
-                                    </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
-                            {{ $book->links() }}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-    @endif
     <script>
     import { Input, initMDB } from "mdb-ui-kit";
     

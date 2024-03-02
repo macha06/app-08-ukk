@@ -171,13 +171,7 @@
                                         </tr>                                    
                                     </tbody>
                                 </table>
-                                @if ($user->akses == 'admin')        
-                                    <a href="{{ route('admin.profile.edit', $user->id) }}" class="btn btn-primary me-1 mb-1 float-end"><i class="fa fa-edit"></i></a>
-                                @elseif ($user->akses == 'petugas')
-                                    <a href="{{ route('petugas.profile.edit', $user->id) }}" class="btn btn-primary me-1 mb-1 float-end"><i class="fa fa-edit"></i></a>
-                                @else
                                     <a href="{{ route('profile.edit', $user->id) }}" class="btn btn-primary me-1 mb-1 float-end"><i class="fa fa-edit"></i></a>
-                                @endif
                             </div>
                         </div>
                     </div>
