@@ -74,6 +74,13 @@
                 <li class="sidebar-title">misc</li>
                 <li
                     class="sidebar-item  ">
+                    <a href="{{ route('profile.index') }}" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li
+                    class="sidebar-item  ">
                     <a href="{{ route('logout') }}" class='sidebar-link'>
                         <i class="bi bi-box-arrow-left  "></i>
                         <span>logout</span>

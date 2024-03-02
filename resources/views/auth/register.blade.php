@@ -20,8 +20,8 @@
     <section class="registration">
       <h3>Registration</h3>
       <div class="registration-form">
-        <h4>Create New Account</h4>
-        <p>If you don't have an account with us, Please Create new account.</p>
+        <h4>Buat Akun Baru</h4>
+        <p>Jika anda belum mempunyai akun silahkan Daftar</p>
         <form method="POST" action="{{ route('register') }}">
           @csrf
         <div class="input-form">
@@ -35,27 +35,18 @@
               @enderror
           </div>
           <div class="input-field">
+            <label for="name">Username</label>
+            <input id="name" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="name" autofocus>
+              @error('username')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+              @enderror
+          </div>
+          <div class="input-field">
             <label for="email">Email *</label>
             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
               @error('email')
-                  <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-              @enderror
-          </div>
-          <div class="input-field">
-            <label for="alamat">Alamat</label>
-            <input id="alamat" type="text" class="form-control @error('alamat') is-invalid @enderror" name="alamat" value="{{ old('alamat') }}" required autocomplete="alamat" autofocus>
-              @error('alamat')
-                  <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-              @enderror
-          </div>
-          <div class="input-field">
-            <label for="telepon">telepon</label>
-            <input id="telepon" type="text" class="form-control @error('telepon') is-invalid @enderror" name="telepon" value="{{ old('telepon') }}" required autocomplete="telepon" autofocus>
-              @error('telepon')
                   <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                   </span>
@@ -74,7 +65,6 @@
             <label for="password-confirm">Confirm Password *</label>
             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
           </div>
-          <p>Your personal data will be used to support your experience throughout this website, to manage access to your account, and for other purposes described in our <a href="">privacy policy</a></p>
           <button type="submit" >Create Account</button>
           <p>Already Have an Account ? <a href="{{ url('login') }}">Login Now</a></p>
         </div>

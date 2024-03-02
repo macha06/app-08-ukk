@@ -1,25 +1,26 @@
 <?php
 
+use App\Models\Buku;
+use App\Exports\UserExport;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BukuController;
 use App\Http\Controllers\UserController;
+use RealRashid\SweetAlert\Facades\Alert;
+use App\Http\Controllers\ExportController;
+use App\Http\Controllers\UlasanController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PeminjamController;
+use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\KoleksiBukuController;
 use App\Http\Controllers\AdminBerandaController;
-use App\Http\Controllers\AprovePeminjamanController;
 use App\Http\Controllers\BukuLandingControlller;
 use App\Http\Controllers\BukuPeminjamController;
 use App\Http\Controllers\DataPeminjamanController;
-use App\Http\Controllers\KoleksiBukuController;
-use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PetugasBerandaController;
 use App\Http\Controllers\PeminjamBerandaController;
-use App\Http\Controllers\UlasanController;
-use App\Exports\UserExport;
-use App\Models\Buku;
-use RealRashid\SweetAlert\Facades\Alert;
-use App\Http\Controllers\ExportController;
+use App\Http\Controllers\AprovePeminjamanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,7 @@ Route::prefix('peminjam')->middleware(['auth', 'auth.peminjam'])->group(function
     Route::resource('koleksi', KoleksiBukuController::class);
     Route::get('/buku/{buku_id}/ulasan', [UlasanController::class, 'create'])->name('ulasan.create');
     Route::post('/buku/ulasan', [UlasanController::class, 'store'])->name('ulasan.store');
+    Route::get('profile', [ProfileController::class, 'index'])->name('profile.index');
     
 });
 Route::get('logout', function () {
