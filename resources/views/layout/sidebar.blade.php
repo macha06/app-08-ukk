@@ -82,6 +82,13 @@
                 </li> 
                 <li class="sidebar-title">misc</li>
                 <li
+                    class="sidebar-item  {{ \Route::is('admin.profile.*') ? 'active' : '' }}">
+                    <a href="{{ route('admin.profile.index') }}" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li
                     class="sidebar-item  ">
                     <a href="{{ route('logout') }}" class='sidebar-link'>
                         <i class="bi bi-box-arrow-left  "></i>

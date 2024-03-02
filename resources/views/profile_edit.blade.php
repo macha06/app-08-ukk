@@ -4,7 +4,7 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>Profile {{ $user->name }}</h3>
+                    <h3>Profile{{ $user->name }}</h3>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -57,127 +57,8 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <table class="table table-user-information">
-                                    <tbody>
-                                        <tr>        
-                                            <td>
-                                                <strong>
-                                                    <i class="fa fa-id-card text-primary"></i>
-                                                    NIK                                              
-                                                </strong>
-                                            </td>
-                                            <td class="text-primary">
-                                                @if ($user->nik == null)
-                                                    <b>-</b>
-                                                @endif
-                                                {{ $user->nik }}   
-                                            </td>
-                                        </tr>
-                                        <tr>    
-                                            <td>
-                                                <strong>
-                                                    <i class="fa fa-user text-primary"></i> 
-                                                    Name                                                
-                                                </strong>
-                                            </td>
-                                            <td class="text-primary">
-                                                {{ $user->name }}    
-                                            </td>
-                                        </tr>
-                                        <tr>        
-                                            <td>
-                                                <strong>
-                                                    <i class="fa fa-user text-primary"></i>
-                                                    Username                                                
-                                                </strong>
-                                            </td>
-                                            <td class="text-primary">
-                                                {{ $user->username }}
-                                            </td>
-                                        </tr>
-                                        <tr>        
-                                            <td>
-                                                <strong>
-                                                    <i class="fa fa-envelope text-primary"></i>
-                                                    Email                                                
-                                                </strong>
-                                            </td>
-                                            <td class="text-primary">
-                                                {{ $user->email }} 
-                                            </td>
-                                        </tr>
-                                        <tr>        
-                                            <td>
-                                                <strong>
-                                                    <i class="fa fa-map-marker text-primary"></i>
-                                                    Alamat                                               
-                                                </strong>
-                                            </td>
-                                            <td class="text-primary">
-                                                @if ($user->alamat == null)
-                                                    <b>-</b>
-                                                @endif
-                                                {{ $user->alamat }}
-                                            </td>
-                                        </tr>
-                                        <tr>        
-                                            <td>
-                                                <strong>
-                                                    <i class="fa fa-phone text-primary"></i>
-                                                    Nomor Telepon                                                
-                                                </strong>
-                                            </td>
-                                            <td class="text-primary">
-                                                @if ($user->telepon == null)
-                                                    <b>-</b>
-                                                @endif
-                                                {{ $user->telepon }}
-                                            </td>
-                                        </tr>
-                                        @if ($user->akses == 'admin' || $user->akses == 'petugas')                       
-                                        <tr>        
-                                            <td>
-                                                <strong>
-                                                    <i class="fa fa-key text-primary"></i>
-                                                    Akses                                               
-                                                </strong>
-                                            </td>
-                                            <td class="text-primary">
-                                                {{ $user->akses }}
-                                            </td>
-                                        </tr>
-                                        @endif
-                                        <tr>        
-                                            <td>
-                                                <strong>
-                                                    <i class="fa fa-calendar text-primary"></i>
-                                                    created                                                
-                                                </strong>
-                                            </td>
-                                            <td class="text-primary">
-                                                {{ $user->created_at->format('d M Y | H:i') }}
-                                            </td>
-                                        </tr>
-                                        <tr>        
-                                            <td>
-                                                <strong>
-                                                    <i class="fa fa-calendar text-primary"></i>
-                                                    Modified                                                
-                                                </strong>
-                                            </td>
-                                            <td class="text-primary">
-                                                {{ $user->updated_at->format('d M Y | H:i') }}
-                                            </td>
-                                        </tr>                                    
-                                    </tbody>
-                                </table>
-                                @if ($user->akses == 'admin')        
-                                    <a href="{{ route('admin.profile.edit', $user->id) }}" class="btn btn-primary me-1 mb-1 float-end"><i class="fa fa-edit"></i></a>
-                                @elseif ($user->akses == 'petugas')
-                                    <a href="{{ route('petugas.profile.edit', $user->id) }}" class="btn btn-primary me-1 mb-1 float-end"><i class="fa fa-edit"></i></a>
-                                @else
-                                    <a href="{{ route('profile.edit', $user->id) }}" class="btn btn-primary me-1 mb-1 float-end"><i class="fa fa-edit"></i></a>
-                                @endif
+                                
+                                <button type="button" class="btn btn-primary me-1 mb-1 float-end"> <i class="fa fa-edit"></i></button>
                             </div>
                         </div>
                     </div>
