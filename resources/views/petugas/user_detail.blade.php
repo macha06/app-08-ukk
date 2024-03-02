@@ -4,43 +4,157 @@
         <div class="page-title">
             <div class="row">
                 <div class="col-12 col-md-6 order-md-1 order-last">
-                    <h3>daftar Buku yang dipinjam</h3>
+                    <h3>Profile {{ $user->name }}</h3>
                 </div>
                 <div class="col-12 col-md-6 order-md-2 order-first">
                     <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="{{ route('peminjam.beranda') }}">Dashboard</a></li>
+                            @if (Auth::user()->akses == 'Petugas')        
                             <li class="breadcrumb-item"><a href="{{ route('peminjam.index') }}">User</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Daftar Buku yang dipinjam</li>
+                            @else
+                            <li class="breadcrumb-item"><a href="{{ route('user.index') }}">User</a></li>
+                            @endif
+                            <li class="breadcrumb-item active" aria-current="page">{{ $user->name }}</li>
                         </ol>
                     </nav>
                 </div>
             </div>
         </div>
     </div> 
-    <div class="page-content"> 
-        <section class="row">
-            <div class="col-12 col-lg-12">
-                <div class="card">
-                    <div class="card-header ">
-                        <div class="d-flex justify-content-between">
-                            <h5 class="card-title">
-                                Profile User
-                            </h5>
+    <div class="row">
+        <div class="col-4">
+            <div class="page-content"> 
+                <section class="row">
+                    <div class="col-12 col-lg-12">
+                        <div class="card">
+                            <div class="card-header ">
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="card-title">
+                                        Foto Profile
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-center align-items-center flex-column">
+                                    <div class="">
+                                        <img src="{{ asset('') }}assets/compiled/jpg/2.jpg" alt="Avatar" class="rounded-circle" width="200">
+                                    </div>
+                                    <h3 class="mt-3">{{ $user->name }}</h3>
+                                    <p class="text-small">{{ $user->akses }}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="card-body">
-                        <div class="table-responsive datatable-minimal">
-                            <p>Nama : {{ $user->name }}</p>
-                            <p>Email : {{ $user->email }}</p>
-                            <p>Nomor Telepon : {{ $user->telepon }}</p>
-                            <p>Alamat : {{ $user->alamat }}</p>
-                        </div>
-                    </div>
-                </div>
+                </section>
             </div>
-        </section>
+        </div>
+        <div class="col-8">
+            <div class="page-content"> 
+                <section class="row">
+                    <div class="col-12 col-lg-12">
+                        <div class="card">
+                            <div class="card-header ">
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="card-title">
+                                        Profile User
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-user-information">
+                                    <tbody>
+                                        <tr>        
+                                            <td>
+                                                <strong>
+                                                    <i class="fa fa-id-card text-primary"></i>
+                                                    NIK                                              
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                123456789     
+                                            </td>
+                                        </tr>
+                                        <tr>    
+                                            <td>
+                                                <strong>
+                                                    <i class="fa fa-user text-primary"></i> 
+                                                    Name                                                
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                {{ $user->name }}    
+                                            </td>
+                                        </tr>
+                                        <tr>        
+                                            <td>
+                                                <strong>
+                                                    <i class="fa fa-user text-primary"></i>
+                                                    Username                                                
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                bootnipets 
+                                            </td>
+                                        </tr>
+                                        <tr>        
+                                            <td>
+                                                <strong>
+                                                    <i class="fa fa-key text-primary"></i>
+                                                    Akses                                               
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                {{ $user->akses }}
+                                            </td>
+                                        </tr>
+                                        <tr>        
+                                            <td>
+                                                <strong>
+                                                    <i class="fa fa-envelope text-primary"></i>
+                                                    Email                                                
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                {{ $user->email }} 
+                                            </td>
+                                        </tr>
+                                        <tr>        
+                                            <td>
+                                                <strong>
+                                                    <i class="fa fa-calendar text-primary"></i>
+                                                    created                                                
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                {{ $user->created_at->format('d M Y | H:i') }}
+                                            </td>
+                                        </tr>
+                                        <tr>        
+                                            <td>
+                                                <strong>
+                                                    <i class="fa fa-calendar text-primary"></i>
+                                                    Modified                                                
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                {{ $user->updated_at->format('d M Y | H:i') }}
+                                            </td>
+                                        </tr>                                    
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
     </div>
+    @if ($user->akses == 'admin')
+
+    @elseif ($user->akses == 'petugas')
+
+    @else
     <div class="page-content"> 
         <section class="row">
             <div class="col-6 col-lg-6">
@@ -137,6 +251,7 @@
             </div>
         </section>
     </div>
+    @endif
     <script>
     import { Input, initMDB } from "mdb-ui-kit";
     

@@ -43,34 +43,55 @@
                 <li class="sidebar-title">Menu</li>
                 
                 <li
-                    class="sidebar-item {{ \Route::is('peminjam.beranda') ? 'active' : '' }}">
-                    <a href="{{ route('peminjam.beranda') }}" class='sidebar-link'>
+                    class="sidebar-item {{ \Route::is('petugas.beranda') ? 'active' : '' }}">
+                    <a href="{{ route('petugas.beranda') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
-                <li class="sidebar-title">Perpustakaan</li> 
+                
+                <li class="sidebar-title">Data Master</li>
+                
                 <li
-                    class="sidebar-item {{ \Route::is('bukus.*') ? 'active' : '' }}">
-                    <a href="{{ route('bukus.index') }}" class='sidebar-link'>
+                    class="sidebar-item {{ \Route::is('peminjam.*') ? 'active' : '' }}">
+                    <a href="{{ route('peminjam.index') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
-                        <span>Daftar Buku</span>
+                        <span>Data Peminjam</span>
                     </a>
                 </li>
                 <li
-                    class="sidebar-item {{ \Route::is('buku.pinjaman') ? 'active' : '' }}">
-                    <a href="{{ route('buku.pinjaman') }}" class='sidebar-link'>
+                    class="sidebar-item {{ \Route::is('buku.*') ? 'active' : '' }}">
+                    <a href="{{ route('buku.index') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
-                        <span>Buku Dipinjam</span>
+                        <span>Data Buku</span>
                     </a>
-                </li>
+                </li> 
                 <li
-                    class="sidebar-item {{ \Route::is('koleksi.*') ? 'active' : '' }}">
-                    <a href="{{ route('koleksi.index') }}" class='sidebar-link'>
+                    class="sidebar-item {{ \Route::is('petugas.peminjaman') ? 'active' : '' }}">
+                    <a href="{{ route('petugas.peminjaman') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
-                        <span>Koleksi Pribadi</span>
+                        <span>Peminjaman</span>
                     </a>
-                </li>
+                </li> 
+                <li
+                    class="sidebar-item {{ \Route::is('approve.index') ? 'active' : '' }}">
+                    <a href="{{ route('approve.index') }}" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Request Peminjaman</span>
+                    </a>
+                </li> 
+                <li
+                    class="sidebar-item {{ \Route::is('kembalikan.index') ? 'active' : '' }}">
+                    <a href="{{ route('kembalikan.index') }}" class='sidebar-link'>
+                        <i class="bi bi-grid-fill"></i>
+                        <span>Request Pengembalian</span>
+                    </a>
+                </li> 
+                <li class="sidebar-item">
+                    <div>
+                        
+                    </div>
+                </li> 
                 <li class="sidebar-title">misc</li>
                 <li
                     class="sidebar-item  ">

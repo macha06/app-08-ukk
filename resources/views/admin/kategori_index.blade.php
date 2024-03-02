@@ -28,9 +28,14 @@
                         </h5>
                         <a href="{{ route('kategori.create') }}" class="btn btn-primary">Tambah Kategori</a>
                     </div>
-                    <div class="form-outline" data-mdb-input-init>
-                        <input type="search" id="form1" class="form-control mt-3" placeholder="Search...." aria-label="Search" />
-                    </div>
+                    <form action="{{ route('kategori.index') }}" method="GET">
+                        <div class="form-outline" data-mdb-input-init>
+                            <div class="input-group">
+                                <input type="search" name="cari" id="form1" class="form-control mt-3" placeholder="Search...." aria-label="Search" />
+                                <button type="submit" class="btn btn-primary mt-3"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive datatable-minimal">

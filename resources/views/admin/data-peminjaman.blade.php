@@ -40,7 +40,7 @@
                                     <option value="12">Desember</option>
                                 </select>
                             </div>
-                            <div class="input-group w-25">
+                            <div class="input-group w-25 me-3">
                                 <span class="input-group-text" id="basic-addon1">Tahun</span>
                                 <input type="number" class="form-control" name="tahun" placeholder="Tahun"
                                     aria-label="Username" aria-describedby="basic-addon1">
@@ -75,7 +75,7 @@
                                     <th>No</th>
                                     <th>Nama Peminjam</th>
                                     <th>Cover Buku</th>
-                                    <th>judul Buku yang Dipinjam</th>
+                                    <th>judul Buku</th>
                                     <th>tanggal peminjaman</th>
                                     <th>tanggal pengembalian</th>
                                     <th>Status Peminjaman</th>      
@@ -126,10 +126,10 @@
                                     <th>No</th>
                                     <th>Nama Peminjam</th>
                                     <th>Cover Buku</th>
-                                    <th>judul Buku yang Dipinjam</th>
+                                    <th>judul Buku</th>
                                     <th>tanggal peminjaman</th>
                                     <th>tanggal pengembalian</th>
-                                    <th>Status Peminjaman</th>      
+                                    <th class="text-center">Status Pengembalian</th>      
                                 </tr>
                             </thead>
                             <tbody>
@@ -143,7 +143,7 @@
                                     <td>{{ $item->buku->judul }}</td>
                                     <td>{{ $item->returned_at }}</td>
                                     <td>{{ $item->return_date }}</td>           
-                                    <td><span style="font-size: 18px" class="badge bg-success">{{ $item->status }}</span></td>
+                                    <td class="text-center"><span class="badge bg-success" ><i class="fas fa-check"></i></span></td>
                                 </tr>
                                 @endforeach
                             </tbody>

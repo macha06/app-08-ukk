@@ -108,7 +108,14 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = Model::findOrFail($id);
+
+        // Ambil buku yang sedang dipinjam oleh pengguna
+        $borrowedBooks = $user->peminjaman()->where('status', 'Dipinjam')->with('buku')->paginate(2);
+        $book = $user->peminjaman()->where('status', 'Dikembalikan')->with('buku')->paginate(2);
+    
+        // Kirim data ke view
+        return view('petugas.user_detail', compact('user', 'borrowedBooks', 'book'));
     }
 
     /**

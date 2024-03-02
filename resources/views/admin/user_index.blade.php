@@ -69,11 +69,18 @@
                                     <td>{{ $item->telepon }}</td>
                                     <td>{{ $item->alamat }}</td>
                                     <td>
-                                        <span class="badge bg-success">{{ $item->akses }}</span>
+                                        @if ($item->akses == 'admin')
+                                            <span class="badge bg-primary">{{ $item->akses }}</span>
+                                        @elseif ($item->akses == 'petugas')
+                                            <span class="badge bg-success">{{ $item->akses }}</span>
+                                        @else
+                                            <span class="badge bg-secondary">{{ $item->akses }}</span>
+                                        @endif
                                     </td>           
                                     <td>                                    
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?')" class="d-inline" action="{{ route('user.destroy', $item->id) }}" method="POST" >
-                                          <a href="{{ route( $routePrefix.'.edit',$item->id ) }}" class="btn btn-warning"><i class="fa-solid fa-pen-to-square"></i></a>
+                                          <a href="{{ route( $routePrefix.'.show',$item->id ) }}" class="btn btn-info me-1"><i class="fa-solid fa-eye text-white"></i></a>
+                                          <a href="{{ route( $routePrefix.'.edit',$item->id ) }}" class="btn btn-warning me-1"><i class="fa-solid fa-pen-to-square text-white"></i></a>
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger "> <i class="fa-solid fa-trash"></i></button>

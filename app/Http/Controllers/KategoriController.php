@@ -11,9 +11,13 @@ class KategoriController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $model = Model::all();
+        if ($request->has('cari')) {
+            $model = Model::where('nm_kategori', 'like', '%' . $request->cari . '%')->get();
+        } else {
+            $model = Model::all();
+        }
         return view('admin.kategori_index')->with('model', $model);
     }
 

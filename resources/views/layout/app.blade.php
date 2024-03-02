@@ -10,7 +10,13 @@
 
 <body>
     <div id="app">
-        @include('layout.sidebar')
+        @if (Auth::user()->akses == 'admin')
+            @include('layout.sidebar')
+        @elseif (Auth::user()->akses == 'petugas')
+            @include('layout.sidebar_petugas')
+        @else
+            @include('layout.sidebar_peminjam')
+        @endif
         <div id="main">
             @include('layout.header')
             @include('sweetalert::alert')
