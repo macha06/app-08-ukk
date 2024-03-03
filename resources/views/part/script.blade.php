@@ -12,3 +12,69 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{ asset('') }}assets/extensions/choices.js/public/assets/scripts/choices.js"></script>
 <script src="{{ asset('') }}assets/static/js/pages/form-element-select.js"></script>
+<script>
+  @if(Session::has('success'))
+      Swal.fire({
+          icon: 'success',
+          title: 'Sukses!',
+          text: '{{ Session::get('success') }}',
+      });
+  @endif
+
+  @if(Session::has('error'))
+      Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: '{{ Session::get('error') }}',
+      });
+  @endif
+
+  @if(Session::has('warning'))
+      Swal.fire({
+          icon: 'warning',
+          title: 'Peringatan!',
+          text: '{{ Session::get('warning') }}',
+      });
+  @endif
+
+  @if(Session::has('info'))
+      Swal.fire({
+          icon: 'info',
+          title: 'Info!',
+          text: '{{ Session::get('info') }}',
+      });
+  @endif
+</script>
+<script>
+  @if(Session::has('success'))
+      Swal.fire({
+          icon: 'success',
+          title: 'Sukses!',
+          text: '{{ Session::get('success') }}',
+      });
+  @endif
+
+  @if(Session::has('error'))
+      Swal.fire({
+          icon: 'error',
+          title: 'Error!',
+          text: '{{ Session::get('error') }}',
+      });
+  @endif
+
+  @if(Session::has('warning'))
+      Swal.fire({
+          icon: 'warning',
+          title: 'Peringatan!',
+          text: '{{ Session::get('warning') }}',
+      });
+  @endif
+
+  @if(Session::has('info'))
+      Swal.fire({
+          icon: 'info',
+          title: 'Info!',
+          text: '{{ Session::get('info') }}',
+      });
+  @endif
+</script>

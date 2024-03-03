@@ -30,7 +30,7 @@
                             <div class="row">
                                 <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
                                     <div class="stats-icon blue mb-2">
-                                        <i class="iconly-boldProfile"></i>
+                                        <i class="fa-solid fa-book"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
@@ -47,7 +47,7 @@
                             <div class="row">
                                 <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start ">
                                     <div class="stats-icon green mb-2">
-                                        <i class="iconly-boldAdd-User"></i>
+                                        <i class="fa-solid fa-handshake"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
@@ -77,6 +77,78 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-12 col-xl-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Statistik Peminjaman</h4>
+                        </div>
+                        <div class="card-body">
+                            <canvas id="myChart" width="400" height="400"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-xl-6">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>User Terbaru</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped" id="table-1">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-uppercase">Name</th>
+                                                    <th class="text-uppercase">Email</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($new as $data)
+                                                    <tr>
+                                                        <td>{{ $data->name }}</td>
+                                                        <td>{{ $data->email }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>User Terbaru</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped" id="table-1">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-uppercase">Name</th>
+                                                    <th class="text-uppercase">Email</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach ($new as $data)
+                                                    <tr>
+                                                        <td>{{ $data->name }}</td>
+                                                        <td>{{ $data->email }}</td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
@@ -88,17 +160,34 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12 col-xl-4">
-
-                </div>
-                <div class="col-12 col-xl-8">
-
-                </div>
-            </div>
+            
         </div>
         <div class="col-12 col-lg-3">
         </div>
     </section>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {!! json_encode($chartData['bulan']) !!},
+            datasets: [{
+                label: 'Total Peminjaman',
+                data: {!! json_encode($chartData['total_peminjaman']) !!},
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
 @endsection

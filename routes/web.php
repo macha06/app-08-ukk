@@ -82,6 +82,6 @@ Route::prefix('peminjam')->middleware(['auth', 'auth.peminjam'])->group(function
 });
 Route::get('logout', function () {
     Auth::logout();
-    Alert::success('Success', 'Logout Success');
+    toast('Terima Kasih Telah Menggunakan Aplikasi Kami!', 'success');
     return redirect('/login');
 });

@@ -3,7 +3,7 @@
         <div class="sidebar-header position-relative">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
-                    <a href="index.html"><img src="{{ asset('') }}assets/compiled/svg/logo.svg" alt="Logo" srcset=""></a>
+                    <a href="index.html">M-Puss</a>
                 </div>
                 <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
@@ -45,7 +45,7 @@
                 <li
                     class="sidebar-item {{ \Route::is('admin.beranda') ? 'active' : '' }}">
                     <a href="{{ route('admin.beranda') }}" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
+                        <i class="fa-solid fa-house"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
@@ -55,28 +55,28 @@
                 <li
                     class="sidebar-item {{ \Route::is('user.*') ? 'active' : '' }}">
                     <a href="{{ route('user.index') }}" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
+                        <i class="fa-solid fa-users"></i>
                         <span>Data User</span>
                     </a>
                 </li>
                 <li
                     class="sidebar-item {{ \Route::is('buku.*') ? 'active' : '' }}">
                     <a href="{{ route('buku.index') }}" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
+                        <i class="fa-solid fa-book"></i>
                         <span>Data Buku</span>
                     </a>
                 </li> 
                 <li
                     class="sidebar-item {{ \Route::is('admin.peminjaman') ? 'active' : '' }}">
                     <a href="{{ route('admin.peminjaman') }}" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
+                        <i class="fa-solid fa-handshake"></i>
                         <span>Data Peminjaman</span>
                     </a>
                 </li> 
                 <li
                     class="sidebar-item {{ \Route::is('kategori.*') ? 'active' : '' }}">
                     <a href="{{ route('kategori.index') }}" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
+                        <i class="fa-solid fa-bookmark"></i>
                         <span>Kategori Buku</span>
                     </a>
                 </li> 
@@ -84,7 +84,7 @@
                 <li
                     class="sidebar-item  {{ \Route::is('admin.profile.*') ? 'active' : '' }}">
                     <a href="{{ route('profile.index') }}" class='sidebar-link'>
-                        <i class="bi bi-grid-fill"></i>
+                        <i class="fa-solid fa-user-tie"></i>
                         <span>Profile</span>
                     </a>
                 </li>

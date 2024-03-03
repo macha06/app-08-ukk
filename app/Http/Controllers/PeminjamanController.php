@@ -39,6 +39,7 @@ class PeminjamanController extends Controller
         return redirect()->route('buku.pinjaman');
     }
 
+    //fungsi kembalikan di Operator
     public function kembalikan( Request $request, $id )
     {
         $pinjam = Peminjaman::findOrFail($id);
