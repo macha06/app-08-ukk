@@ -175,7 +175,7 @@
                                         </tr>                                    
                                     </tbody>
                                 </table>
-                                    <a href="{{ route('profile.edit', $user->id) }}" class="btn btn-primary me-1 mb-1 float-end"><i class="fa fa-edit"></i></a>
+                                    <a href="{{ route('profile-peminjam.edit', $user->id) }}" class="btn btn-primary me-1 mb-1 float-end"><i class="fa fa-edit"></i></a>
                             </div>
                         </div>
                     </div>

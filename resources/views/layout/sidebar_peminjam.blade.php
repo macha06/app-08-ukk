@@ -73,8 +73,8 @@
                 </li>
                 <li class="sidebar-title">misc</li>
                 <li
-                    class="sidebar-item  ">
-                    <a href="" class='sidebar-link'>
+                    class="sidebar-item {{ \Route::is('profile-peminjam.*') ? 'active' : '' }}">
+                    <a href="{{ route('profile-peminjam.index') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Profile</span>
                     </a>

@@ -7,14 +7,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
-class ProfileController extends Controller
+class ProfilePetugasController extends Controller
 {
     public function index()
     {
         $user = Model::findOrFail(auth()->user()->id);
         $borrowedBooks = $user->peminjaman()->where('status', 'Dipinjam')->with('buku')->paginate(2);
         $book = $user->peminjaman()->where('status', 'Dikembalikan')->with('buku')->paginate(2);
-        return view('profile', compact('user', 'borrowedBooks', 'book'));
+        return view('petugas.profile', compact('user', 'borrowedBooks', 'book'));
     }
 
     public function show($id)
@@ -25,7 +25,7 @@ class ProfileController extends Controller
     public function edit($id)
     {
         $user = Model::findOrFail($id);
-        return view('profile_edit', compact('user'));
+        return view('petugas.profile_edit', compact('user'));
     }
     
     public function update(Request $request, $id)
@@ -76,6 +76,6 @@ class ProfileController extends Controller
         }
         //redirect to index
         Alert::success('Hore!', 'data berhasil diupdate');
-        return redirect()->route('profile.index');
+        return redirect()->route('profile-petugas.index');
     }
 }

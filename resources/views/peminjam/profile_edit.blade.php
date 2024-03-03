@@ -36,7 +36,7 @@
                                         @if ($user->avatar == null)     
                                         <img src="{{ asset('') }}assets/compiled/jpg/2.jpg" alt="Avatar" class="rounded" width="200">
                                         @else
-                                        <img src="{{ Storage::url('public/avatar/').$user->avatar }}" alt="Avatar" class="rounded" width="200" height="200">
+                                        <img src="{{ Storage::url('public/avatar/').$user->avatar }}" alt="Avatar" class="rounded" width="200">
                                         @endif
                                     </div>
                                     <h3 class="mt-3">{{ $user->name }}</h3>
@@ -61,7 +61,7 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <form action="{{ route('profile.update', $user->id) }}" method="post" enctype="multipart/form-data">
+                                <form action="{{ route('profile-peminjam.update', $user->id) }}" method="post" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <div class="mb-3">

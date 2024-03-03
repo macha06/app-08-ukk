@@ -94,8 +94,8 @@
                 </li> 
                 <li class="sidebar-title">misc</li>
                 <li
-                    class="sidebar-item  ">
-                    <a href="{{ route('petugas.profile.index') }}" class='sidebar-link'>
+                    class="sidebar-item  {{ \Route::is('profile-petugas.*') ? 'active' : '' }}">
+                    <a href="{{ route('profile-petugas.index') }}" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Profile</span>
                     </a>
