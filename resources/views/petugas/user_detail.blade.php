@@ -38,7 +38,11 @@
                             <div class="card-body">
                                 <div class="d-flex justify-content-center align-items-center flex-column">
                                     <div class="">
-                                        <img src="{{ asset('') }}assets/compiled/jpg/2.jpg" alt="Avatar" class="rounded-circle" width="200">
+                                        @if ($user->avatar == null)     
+                                        <img src="{{ asset('') }}assets/compiled/jpg/2.jpg" alt="Avatar" class="rounded" width="200">
+                                        @else
+                                        <img src="{{ Storage::url('public/avatar/').$user->avatar }}" alt="Avatar" class="rounded" width="200" height="200">
+                                        @endif
                                     </div>
                                     <h3 class="mt-3">{{ $user->name }}</h3>
                                     <p class="text-small">{{ $user->akses }}</p>
