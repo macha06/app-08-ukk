@@ -22,10 +22,6 @@ class AdminBerandaController extends Controller
         ->limit(5) // Ambil 10 buku yang paling sering dipinjam
         ->get();
 
-        $totalPinjamanPerBuku = Peminjaman::select('buku_id', DB::raw('COUNT(*) as total'))
-        ->groupBy('buku_id')
-        ->get();
-
         $data = DB::table('peminjaman')
                     ->select(DB::raw('MONTH(created_at) as bulan'), DB::raw('COUNT(*) as total_peminjaman'))
                     ->groupBy(DB::raw('MONTH(created_at)'))
@@ -62,7 +58,6 @@ class AdminBerandaController extends Controller
             'new' => User::latest()->take(5)->get(),
             'chartData' => $chartData,
             'popularBooks' => $popularBooks,
-            'totalPinjamanPerBuku' => $totalPinjamanPerBuku
         ]);
     }
 }

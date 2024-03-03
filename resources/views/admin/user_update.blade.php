@@ -90,8 +90,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="alamat">Alamat</label>
-                                            <input type="text" id="first-name-vertical" class="form-control"
-                                                name="alamat" value="{{ $models->alamat }}">
+                                            <textarea name="alamat" id="alamat" class="form-control" cols="30" rows="10" value="{{ $models->alamat }}"></textarea>
                                             @error('alamat')
                                                 <div class="alert alert-danger mt-2">
                                                     {{ $message }}
@@ -101,7 +100,7 @@
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="Password">Password</label>
+                                            <label for="Password">Password</label><span class="text-danger"> (password akan diubah)</span>
                                             <input type="password" id="first-name-vertical" class="form-control"
                                                 name="password">
                                             @error('password')
@@ -134,17 +133,8 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-12">
-                                        <div class='form-check'>
-                                            <div class="checkbox">
-                                                <input type="checkbox" id="checkbox3" class='form-check-input'
-                                                    checked>
-                                                <label for="checkbox3">Remember Me</label>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="col-12 d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-primary me-1 mb-1">{{ $button }}</button>
+                                        <button type="submit" class="btn btn-primary me-1 mb-1"><i class="fa fa-save"></i></button>
                                     </div>
                                 </div>
                             </div>

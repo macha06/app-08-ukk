@@ -78,7 +78,7 @@
                                         @endif
                                     </td>           
                                     <td>                                    
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?')" class="d-inline" action="{{ route('user.destroy', $item->id) }}" method="POST" >
+                                        <form class="d-inline" onsubmit="return validateForm()" id="deleteUser" action="{{ route('user.destroy', $item->id) }}" method="POST" >
                                           <a href="{{ route( $routePrefix.'.show',$item->id ) }}" class="btn btn-info me-1"><i class="fa-solid fa-eye text-white"></i></a>
                                           <a href="{{ route( $routePrefix.'.edit',$item->id ) }}" class="btn btn-warning me-1"><i class="fa-solid fa-pen-to-square text-white"></i></a>
                                         @csrf
@@ -102,4 +102,30 @@ import { Input, initMDB } from "mdb-ui-kit";
 
 initMDB({ Input });
 </script>
+<script>
+    function validateForm() {
+      // Your form validation logic here
+      // For demonstration purposes, let's assume it's successful
+      // You can replace this with your own validation logic
+
+      // Show SweetAlert2 confirmation
+      Swal.fire({
+        title: 'Apa Kamu Yakin',
+        text: "Anda Akan Menghapus User",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, submit it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          // If user confirms, submit the form
+          document.getElementById("myForm").submit();
+        }
+      });
+
+      // Prevent default form submission
+      return false;
+    }
+  </script>
 @endsection

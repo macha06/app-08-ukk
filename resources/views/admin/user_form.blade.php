@@ -77,8 +77,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label for="alamat">Alamat</label>
-                                            <input type="text" id="first-name-vertical" class="form-control"
-                                                name="alamat" placeholder="Alamat">
+                                            <textarea name="alamat" class="form-control" id="" cols="30" rows="10"></textarea>
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -93,7 +92,7 @@
                                         </div>
                                     </div>
                                     <div class="col-12 d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                        <button type="submit" class="btn btn-primary me-1 mb-1"><i class="fa fa-save"></i></button>
                                     </div>
                                 </div>
                             </div>
