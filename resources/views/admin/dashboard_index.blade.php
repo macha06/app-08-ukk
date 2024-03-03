@@ -121,22 +121,26 @@
                         <div class="col">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4>User Terbaru</h4>
+                                    <h4>Buku Popular Dipinjam</h4>
                                 </div>
                                 <div class="card-body">
                                     <div class="table-responsive">
                                         <table class="table table-striped" id="table-1">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-uppercase">Name</th>
-                                                    <th class="text-uppercase">Email</th>
+                                                    <th class="text-uppercase">Cover</th>
+                                                    <th class="text-uppercase">Judul</th>
+                                                    <th class="text-uppercase">Jumlah Dipinjam</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($new as $data)
+                                                @foreach ($popularBooks as $data)
                                                     <tr>
-                                                        <td>{{ $data->name }}</td>
-                                                        <td>{{ $data->email }}</td>
+                                                        <td>
+                                                            <img src="{{ Storage::url('public/buku/').$data->gambar }}" class="rounded" style="width: 25px">
+                                                        </td>
+                                                        <td>{{ $data->judul }}</td>
+                                                        <td>{{ $data->borrow_count }}</td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>

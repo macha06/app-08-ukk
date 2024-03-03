@@ -14,6 +14,18 @@ class AdminBerandaController extends Controller
 {
     public function index()
     {
+
+        $popularBooks = Buku::select('buku.*', DB::raw('COUNT(peminjaman.id) as borrow_count'))
+        ->leftJoin('peminjaman', 'buku.id', '=', 'peminjaman.buku_id')
+        ->groupBy('buku.id', 'buku.judul', 'buku.penulis', 'buku.penerbit', 'buku.stok', 'buku.gambar', 'buku.deskripsi', 'buku.tahun_terbit' ,'buku.created_at', 'buku.updated_at')
+        ->orderByDesc('borrow_count')
+        ->limit(5) // Ambil 10 buku yang paling sering dipinjam
+        ->get();
+
+        $totalPinjamanPerBuku = Peminjaman::select('buku_id', DB::raw('COUNT(*) as total'))
+        ->groupBy('buku_id')
+        ->get();
+
         $data = DB::table('peminjaman')
                     ->select(DB::raw('MONTH(created_at) as bulan'), DB::raw('COUNT(*) as total_peminjaman'))
                     ->groupBy(DB::raw('MONTH(created_at)'))
@@ -48,7 +60,9 @@ class AdminBerandaController extends Controller
             'peminjaman' => Peminjaman::all(),
             'kategori' => Kategori::all(),
             'new' => User::latest()->take(5)->get(),
-            'chartData' => $chartData
+            'chartData' => $chartData,
+            'popularBooks' => $popularBooks,
+            'totalPinjamanPerBuku' => $totalPinjamanPerBuku
         ]);
     }
 }
