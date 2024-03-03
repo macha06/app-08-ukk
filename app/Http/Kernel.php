@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'auth.admin' => \App\Http\Middleware\Admin::class,
         'auth.petugas' => \App\Http\Middleware\Petugas::class,
         'auth.peminjam' => \App\Http\Middleware\Peminjam::class,
+        'check.nik' => \App\Http\Middleware\CheckNIK::class,
     ];
 }

@@ -72,7 +72,7 @@ Route::prefix('peminjam')->middleware(['auth', 'auth.peminjam'])->group(function
     Route::get('beranda', [PeminjamBerandaController::class, 'index'])->name('peminjam.beranda');
     Route::resource('bukus', BukuPeminjamController::class);
     Route::get('/buku/{id}/pinjem', [BukuController::class, 'pinjem'])->name('buku.pinjam.create');
-    Route::post('/buku/{id}/pinjam', [PeminjamanController::class, 'pinjam'])->name('buku.pinjam');
+    Route::post('/buku/{id}/pinjam', [PeminjamanController::class, 'pinjam'])->name('buku.pinjam')->middleware('check.nik');
     Route::get('/buku/pinjaman', [PeminjamanController::class, 'borrowedBooks'])->name('buku.pinjaman');
     Route::get('/peminjaman/{id}/cetak-struk-pdf', [PeminjamanController::class, 'cetakStruk'])->name('peminjaman.cetak_struk_pdf');
     Route::resource('koleksi', KoleksiBukuController::class);

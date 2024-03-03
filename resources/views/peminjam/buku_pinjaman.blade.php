@@ -53,14 +53,7 @@
                                         <td>{{ $item->buku->judul }}</td>
                                         <td><span class="badge bg-primary">{{ $item->created_at->format('d-M-Y') }}</span></td>
                                         <td>
-                                            @if ($item->status == 'Dipinjam')
-                                                <span class="badge bg-warning">{{ $item->status }}</span>
-                                            @elseif ($item->status == 'Dikembalikan')
-                                                <span class="badge bg-success">{{ $item->status }}</span>
-                                            @elseif ($item->status == 'Menunggu Persetujuan')
-                                                <span class="badge bg-info">{{ $item->status }}</span>
-                                            @endif
-                                            
+                                            <span class="badge bg-info"><i class="fa-solid fa-hourglass-start"></i></span>
                                         </td>
                                     </tr>
                                     @empty

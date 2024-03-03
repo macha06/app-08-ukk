@@ -76,7 +76,10 @@
                                                 </strong>
                                             </td>
                                             <td class="text-primary">
-                                                123456789     
+                                                @if ($user->nik == null)
+                                                    <b>-</b>
+                                                @endif
+                                                {{ $user->nik }}   
                                             </td>
                                         </tr>
                                         <tr>    
@@ -98,7 +101,38 @@
                                                 </strong>
                                             </td>
                                             <td class="text-primary">
-                                                bootnipets 
+                                                @if ($user->username == null)
+                                                <b>-</b>
+                                                @endif
+                                                {{ $user->username }}
+                                            </td>
+                                        </tr>
+                                        <tr>        
+                                            <td>
+                                                <strong>
+                                                    <i class="fa fa-map-marker text-primary"></i>
+                                                    Alamat                                               
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                @if ($user->alamat == null)
+                                                    <b>-</b>
+                                                @endif
+                                                {{ $user->alamat }}
+                                            </td>
+                                        </tr>
+                                        <tr>        
+                                            <td>
+                                                <strong>
+                                                    <i class="fa fa-phone text-primary"></i>
+                                                    No Telepon                                               
+                                                </strong>
+                                            </td>
+                                            <td class="text-primary">
+                                                @if ($user->telepon == null)
+                                                    <b>-</b>
+                                                @endif
+                                                {{ $user->telepon }}
                                             </td>
                                         </tr>
                                         <tr>        
