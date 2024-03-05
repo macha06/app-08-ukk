@@ -17,10 +17,6 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $title = 'Delete Data!';
-        $text = "Are you sure you want to delete?";
-        confirmDelete($title, $text);
-        
         // Ambil data dari input form
         $akses = $request->input('akses');
         $keyword = $request->input('keyword');
@@ -45,6 +41,10 @@ class UserController extends Controller
         } else {
             $model = Model::paginate(10);
         }
+        $title = 'Delete User!';
+        $text = "Apakah anda yakin ingin menghapus user ini?";
+        confirmDelete($title, $text);
+
         return view('admin.user_index',[
             'routePrefix' => 'user',
             'title' => 'Data User',

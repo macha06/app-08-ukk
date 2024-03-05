@@ -26,7 +26,7 @@
                         Table User
                     </h5>         
                     <div class="d-flex justify-content-start">
-                        <a href="{{ route($routePrefix.'.create') }}" class="btn btn-primary me-2"><i class="fa-solid fa-plus"></i></a>
+                        <a href="{{ route($routePrefix.'.create') }}" class="btn btn-primary me-2"><i class="fa-solid fa-user-plus"></i></a>
                         <a href="{{ route('export.users') }}" class="btn btn-success"><i class="fas fa-file-excel"> </i></a>
                     </div>
                     <div class="form-outline" data-mdb-input-init>
@@ -78,13 +78,9 @@
                                         @endif
                                     </td>           
                                     <td>                                    
-                                        <form class="d-inline" data-confirm-delete="true" id="deleteUser" action="{{ route('user.destroy', $item->id) }}" method="POST" >
-                                          <a href="{{ route( $routePrefix.'.show',$item->id ) }}" class="btn btn-info me-1"><i class="fa-solid fa-eye text-white"></i></a>
-                                          <a href="{{ route( $routePrefix.'.edit',$item->id ) }}" class="btn btn-warning me-1"><i class="fa-solid fa-pen-to-square text-white"></i></a>
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger " > <i class="fa-solid fa-trash"></i></button>
-                                    </form>
+                                        <a href="{{ route( $routePrefix.'.show',$item->id ) }}" class="btn btn-info me-1"><i class="fa-solid fa-eye text-white"></i></a>
+                                        <a href="{{ route( $routePrefix.'.edit',$item->id ) }}" class="btn btn-warning me-1"><i class="fa-solid fa-pen-to-square text-white"></i></a>
+                                        <a href="{{ route('user.destroy', $item->id) }}" class="btn btn-danger" data-confirm-delete="true"><i class="fa-solid fa-trash text-white"></i>.</a>
                                     </td>
                                 </tr>
                                 @endforeach
