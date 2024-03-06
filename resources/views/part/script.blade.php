@@ -12,6 +12,8 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="{{ asset('') }}assets/extensions/choices.js/public/assets/scripts/choices.js"></script>
 <script src="{{ asset('') }}assets/static/js/pages/form-element-select.js"></script>
+<script src="{{ asset('') }}assets/extensions/parsleyjs/parsley.min.js"></script>
+<script src="{{ asset('') }}assets/static/js/pages/parsley.js"></script>
 <script>
   @if(Session::has('success'))
       Swal.fire({

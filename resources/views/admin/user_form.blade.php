@@ -24,75 +24,109 @@
                 <div class="card-header">
                     <h4 class="card-title">Tambah User</h4>
                 </div>
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
                 <div class="card-content">
                     <div class="card-body">
                         <form class="form form-vertical" action="{{ route($route) }}" method="post">
                             @csrf
                             <div class="form-body">
                                 <div class="row">
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         <div class="form-group">
-                                            <label for="name">Nama Lengkap</label>
+                                            <label for="" class="form-label">Nama Lengkap</label>
+                                            <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-user"></i></span>
                                             <input type="text" id="first-name-vertical" class="form-control"
-                                                name="name" placeholder="Nama Lengkap">
+                                                name="name" placeholder="Nama Lengkap" value="{{ old('name') }}" data-parsley-required="true" >
+                                            </div>
+                                            @if ($errors->has('name'))
+                                                <small class="text-danger">{{ $errors->first('name') }}</small>
+                                            @endif
                                         </div>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         <div class="form-group">
-                                            <label for="username">Username</label>
-                                            <input type="text" id="first-name-vertical" class="form-control"
-                                                name="username" placeholder="Nama Lengkap">
+                                            <label for="" class="form-label">Username</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-user"></i></span>          
+                                                <input type="text" id="first-name-vertical" class="form-control"
+                                                    name="username" placeholder="Username" data-parsley-required="true" value="{{ old('username') }}">
+                                            </div>
+                                            @if ($errors->has('username'))
+                                                <small class="text-danger">{{ $errors->first('username') }}</small>
+                                            @endif
                                         </div>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         <div class="form-group">
-                                            <label for="email">Email</label>
+                                            <label for="" class="form-label">Email</label><small>* email aktif</small>
+                                            <div class="input-group">
+                                            <span class="input-group-text">@</span>
                                             <input type="email" id="email-id-vertical" class="form-control"
-                                                name="email" placeholder="Email">
+                                                name="email" placeholder="Email" value="{{ old('email') }}" data-parsley-required="true">
+                                            </div>
+                                            @if ($errors->has('email'))
+                                                <small class="text-danger">{{ $errors->first('email') }}</small>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="form-group">
+                                            <label for="" class="form-label">Nomor Telepon</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
+                                                <input type="number" id="contact-info-vertical" class="form-control"
+                                                    name="telepon" placeholder="Nomor Telepon" value="{{ old('telepon') }}" data-parsley-required="true">
+                                            </div>
+                                            @if ($errors->has('telepon'))
+                                                <small class="text-danger">{{ $errors->first('telepon') }}</small>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="telepon">Phone</label>
-                                            <input type="number" id="contact-info-vertical" class="form-control"
-                                                name="telepon" placeholder="Nomor Hp">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group">
-                                            <label for="password">Password</label><span class="text-warning"> (password minimal terdiri dari 8 karakter)</span>
+                                            <label for="" class="form-label">Password</label><small>*min 8</small>
+                                            <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
                                             <input type="password" id="password-vertical" class="form-control"
-                                                name="password" placeholder="Password">
+                                                name="password" placeholder="Password min 8" value="{{ old('password') }}" data-parsley-required="true">
+                                            </div>
+                                            @if ($errors->has('password'))
+                                                <small class="text-danger">{{ $errors->first('password') }}</small>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="alamat">Alamat</label>
-                                            <textarea name="alamat" class="form-control" id="" cols="30" rows="10"></textarea>
+                                            <label for="" class="form-label">Alamat</label>
+                                            <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-map-marker"></i></span>
+                                            <input type="text" id="contact-info-vertical" class="form-control"
+                                                name="alamat" placeholder="Alamat" data-parsley-required="true" value="{{ old('alamat') }}">
+                                            </div>
+                                            @if ($errors->has('alamat'))
+                                                <small class="text-danger">{{ $errors->first('alamat') }}</small>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label for="akses">Role</label>
-                                            <select class="form-select" name="akses" aria-label="Default select example">
+                                            <label for="" class="form-label">Role</label>
+                                            <div class="input-group">
+                                            <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                            <select class="form-select" name="akses" aria-label="Default select example" id="inputGroupSelect01" data-parsley-required="true" >
                                                 <option selected>Akses</option>
                                                 <option value="admin">Admin</option>
                                                 <option value="petugas">Petugas</option>
                                                 <option value="peminjam">Peminjam</option>
                                               </select>
+                                            </div>
+                                            @if ($errors->has('akses'))
+                                                <small class="text-danger">{{ $errors->first('akses') }}</small>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-12 d-flex justify-content-end">
-                                        <button type="submit" class="btn btn-primary me-1 mb-1"><i class="fa fa-save"></i></button>
+                                        <button type="submit" class="btn btn-primary me-1 mb-1"><i class="fa fa-save"></i> Simpan</button>
                                     </div>
                                 </div>
                             </div>
