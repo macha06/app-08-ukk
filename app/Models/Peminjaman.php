@@ -16,6 +16,7 @@ class Peminjaman extends Model
         'return_date',
         'returned_at',
         'status',
+        'jumlah'
     ];
 
     public function buku()

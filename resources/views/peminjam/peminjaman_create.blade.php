@@ -30,13 +30,24 @@
                                 <div class="row">
                                     <form action="{{ route('buku.pinjam', ['id' => $model->id]) }}" method="post">
                                         @csrf
-                                        <label for="return_date" class="form-label">Tanggal Pengembalian:</label>
-                                        <input type="date" class="form-control" id="return_date" name="return_date">
-                                        @error('return_date')
-                                            <div class="alert alert-danger mt-2">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
+                                        <div class="col-12">
+                                            <label for="return_date" class="form-label">Tanggal Pengembalian:</label>
+                                            <input type="date" class="form-control" id="return_date" name="return_date">
+                                            @error('return_date')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="" class="form-label">Jumlah Pinjam</label>
+                                            <input type="number" class="form-control" id="jumlah" name="jumlah">
+                                            @error('jumlah')
+                                                <div class="alert alert-danger mt-2">
+                                                    {{ $message }}
+                                                </div>
+                                            @enderror
+                                        </div>
                                         <button class="btn btn-primary mt-3" type="submit">Pinjam Buku</button>
                                     </form>
                                 </div>

@@ -9,7 +9,13 @@
     <div class="col-12 col-md-6 order-md-2 order-first">
         <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ route('admin.beranda') }}">Dashboard</a></li>
+                @if (Auth::user()->akses == 'admin')
+                    <li class="breadcrumb-item"><a href="{{ route('admin.beranda') }}">Dashboard</a></li>
+                @elseif (Auth::user()->akses == 'petugas')
+                    <li class="breadcrumb-item"><a href="{{ route('petugas.beranda') }}">Dashboard</a></li>
+                @else
+                <li class="breadcrumb-item"><a href="{{ route('peminjam.beranda') }}">Dashboard</a></li>
+                @endif
                 <li class="breadcrumb-item"><a href="{{ route('buku.index') }}">Data Buku</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Create Data Buku</li>
             </ol>
@@ -24,15 +30,6 @@
                 <div class="card-header">
                     <h4 class="card-title">Tambah Buku</h4>
                 </div>
-                @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
                 <div class="card-content">
                     <div class="card-body">
                         <form class="form form-vertical" action="{{ route('buku.store') }}" method="post" enctype="multipart/form-data">
@@ -41,43 +38,72 @@
                                         @csrf
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="first-name-vertical">Judul Buku</label>
+                                                <label for="first-name-vertical" class="form-label">Judul Buku</label>
+                                                <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-book"></i></span>
                                                 <input type="text" id="first-name-vertical" class="form-control"
                                                     name="judul" placeholder="Judul Buku">
+                                                </div>
+                                                @if ($errors->has('judul'))
+                                                    <small class="text-danger">{{ $errors->first('judul') }}</small>
+                                                @endif
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-4">
                                             <div class="form-group">
-                                                <label for="first-name-vertical">Penulis</label>
+                                                <label for="first-name-vertical" class="form-label">Penulis</label>
+                                                <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
                                                 <input type="text" id="first-name-vertical" class="form-control"
                                                     name="penulis" placeholder="Penulis">
+                                                </div>
+                                                @if ($errors->has('penulis'))
+                                                    <small class="text-danger">{{ $errors->first('penulis') }}</small>
+                                                @endif
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-4">
                                             <div class="form-group">
-                                                <label for="first-name-vertical">Penerbit</label>
+                                                <label for="first-name-vertical" class="form-label">Penerbit</label>
+                                                <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-user"></i></span>
                                                 <input type="text" id="first-name-vertical" class="form-control"
                                                     name="penerbit" placeholder="Penerbit">
+                                                </div>
+                                                @if ($errors->has('penerbit'))
+                                                    <small class="text-danger">{{ $errors->first('penerbit') }}</small>
+                                                @endif
                                             </div>
                                         </div>
-                                        <div class="col-12">
+                                        <div class="col-4">
                                             <div class="form-group">
-                                                <label for="email-id-vertical">Tahun terbit</label>
+                                                <label for="email-id-vertical" class="form-label">Tahun terbit</label>
+                                                <div class="input-group">
+                                                <span class="input-group-text"><i class="fas fa-calendar"></i></span>
                                                 <input type="date" id="email-id-vertical" class="form-control"
                                                     name="tahun_terbit" placeholder="Tahun Terbit">
+                                                </div>
+                                                @if ($errors->has('tahun_terbit'))
+                                                    <small class="text-danger">{{ $errors->first('tahun_terbit') }}</small>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
-                                                <label for="first-name-vertical">deskripsi</label>
-                                                <input type="text" id="first-name-vertical" class="form-control"
-                                                    name="deskripsi" placeholder="Deskripsi">
+                                                <label for="first-name-vertical" class="form-label">deskripsi</label>
+                                                <textarea name="deskripsi" class="form-control" id="default" cols="30" rows="10"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label for="formFile" class="form-label">Cover Buku</label>
-                                                <input class="form-control mb-3" name="gambar" type="file" id="formFile" class="@error('image') is-invalid @enderror">
+                                                <div class="input-group">
+                                                    <input class="form-control" name="gambar" type="file" id="formFile" class="@error('image') is-invalid @enderror">
+                                                    <span class="input-group-text"><i class="fas fa-image"></i></span>
+                                                </div>
+                                                @error('image')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="col-12 mb-3">
@@ -97,17 +123,8 @@
                                                     name="stok" placeholder="Stok">
                                             </div>
                                         </div>
-                                        <div class="col-12">
-                                            <div class='form-check'>
-                                                <div class="checkbox">
-                                                    <input type="checkbox" id="checkbox3" class='form-check-input'
-                                                        checked>
-                                                    <label for="checkbox3">Remember Me</label>
-                                                </div>
-                                            </div>
-                                        </div>
                                         <div class="col-12 d-flex justify-content-end">
-                                            <button type="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                            <button type="submit" class="btn btn-primary me-1 mb-1" onclick="removeElement()">Submit</button>
                                         </div>
                                 </div>
                             </div>

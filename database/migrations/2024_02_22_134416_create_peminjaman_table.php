@@ -16,6 +16,7 @@ return new class extends Migration
             $table->date('return_date');
             $table->date('returned_at')->nullable();
             $table->string('status');
+            $table->integer('jumlah');
             $table->string('komentar')->nullable();
             $table->unsignedBigInteger('buku_id');
             $table->foreign('buku_id')->references('id')->on('buku');

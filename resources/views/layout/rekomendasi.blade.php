@@ -12,7 +12,7 @@
           @forelse ($model as $item)
           <li class="card">
             <div class="img">
-              <a href='{{ route('login') }}'><img src="{{ Storage::url('public/buku/').$item->gambar }}" class="rounded" style="width: 150px"></a>
+              <a href='{{ route('login') }}'><img src="{{ Storage::url('public/buku/').$item->gambar }}" class="rounded" style="width: 150px; height: 200px"></a>
               <span class="badge">Baru</span>
             </div>
             <h5>{{ $item->judul }}</h5>
@@ -22,7 +22,7 @@
               @endforeach
             </div>
             <div class="footer">
-              <span class="star"><i class="fa fa-star"></i> 4.7</span>
+              <span class="star"><i class="fa fa-star"></i>{{ $item->averageRating() }}</span>
               <div class="price">
               </div>
             </div>

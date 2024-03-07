@@ -17,7 +17,8 @@ class PeminjamanController extends Controller
     public function pinjam (Request $request, $id)
     {
         $request->validate([
-            'return_date' => 'required|date|after_or_equal:today'
+            'return_date' => 'required|date|after_or_equal:today',
+            'jumlah' => 'required|numeric|min:1'
         ]);
 
         $buku = Model::findOrFail($id);
@@ -31,9 +32,10 @@ class PeminjamanController extends Controller
         $pinjam->buku_id = $id;
         $pinjam->return_date = $request->return_date;
         $pinjam->status = 'Menunggu Persetujuan';
+        $pinjam->jumlah = $request->jumlah;
         $pinjam->save();
 
-        $buku->stok--;
+        $buku->stok -= $request->jumlah;
         $buku->save();
         Alert::success('Buku ' . $buku->judul . ' dipinjam');
         return redirect()->route('buku.pinjaman');
@@ -48,7 +50,7 @@ class PeminjamanController extends Controller
         $pinjam->save();
 
         $buku = $pinjam->buku;
-        $buku->stok++;
+        $buku->stok += $pinjam->jumlah;
         $buku->save();
 
         Alert::success('Buku ' . $buku->judul . ' dikembalikan');

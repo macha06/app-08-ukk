@@ -14,6 +14,8 @@
 <script src="{{ asset('') }}assets/static/js/pages/form-element-select.js"></script>
 <script src="{{ asset('') }}assets/extensions/parsleyjs/parsley.min.js"></script>
 <script src="{{ asset('') }}assets/static/js/pages/parsley.js"></script>
+<script src="{{ asset('') }}assets/extensions/tinymce/tinymce.min.js"></script>
+<script src="{{ asset('') }}assets/static/js/pages/tinymce.js"></script>
 <script>
   @if(Session::has('success'))
       Swal.fire({

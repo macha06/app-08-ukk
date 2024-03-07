@@ -27,7 +27,7 @@
                             <div class="col-md-12">
                             <form action="{{ route('buku.index') }}" method="GET">
                                 <div class="form-group">
-                                    <label for="choices-multiple-remove-button">Kategori</label>
+                                    <label for="choices-multiple-remove-button" class="form-label">Kategori</label>
                                     <select class="choices form-select multiple-remove" name="kategori[]" multiple="multiple">
                                         <optgroup label="Pilih Kategori">
                                             @foreach ($kategoris as $item) 
@@ -58,7 +58,7 @@
                         Table Buku
                     </h5>
                     <div class="d-flex justify-content-start">
-                        <a href="{{ route('buku.create') }}" class="btn btn-primary me-2"> <i class="fas fa-user-plus"></i></a>
+                        <a href="{{ route('buku.create') }}" class="btn btn-primary me-2"> <i class="fas fa-plus"></i></a>
                         <a href="{{ route('export.buku') }}" class="btn btn-success"><i class="fas fa-file-excel"> </i></a>
                     </div>
                 </div>
@@ -70,11 +70,6 @@
                                     <th>No</th>
                                     <th>Gambar Cover</th>
                                     <th>Judul</th>
-                                    <th>Kategori</th>
-                                    <th>penulis</th>
-                                    <th>Penerbit</th>
-                                    <th>Tahun Terbit</th>
-                                    <th>Deskripsi</th>
                                     <th>Stok</th>
                                     <th>aksi</th>
                                 </tr>
@@ -84,20 +79,9 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>
-                                        <img src="{{ Storage::url('public/buku/').$item->gambar }}" class="rounded" style="width: 150px">
+                                        <img src="{{ Storage::url('public/buku/').$item->gambar }}" class="rounded" style="width: 120px; height: 180px">
                                     </td>
                                     <td>{{ $item->judul }}</td>
-                                    <td>
-                                        <ul>
-                                            @foreach($item->kategori as $category)
-                                                <li>{{ $category->nm_kategori }}</li>
-                                            @endforeach
-                                        </ul>
-                                    </td>
-                                    <td>{{ $item->penulis }}</td>
-                                    <td>{{ $item->penerbit }}</td>
-                                    <td>{{ $item->tahun_terbit }}</td>
-                                    <td>{{ $item->deskripsi }}</td>
                                     <td>{{ $item->stok }}</td>
                                     <td>                 
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('buku.destroy', $item->id) }}" method="POST">
@@ -105,7 +89,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i></button>
-                                            <a href="" class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i></a>
+                                            <a href="{{ route('buku.show', $item->id) }}" class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i></a>
                                         </form>
                                     </td>
                                 </tr>

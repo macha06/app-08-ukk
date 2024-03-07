@@ -9,8 +9,18 @@
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
+                        @if (Auth::user()->akses == 'admin')
+                            <li class="breadcrumb-item"><a href="{{ route('admin.beranda') }}">Dashboard</a></li>
+                        @elseif (Auth::user()->akses == 'petugas')
+                            <li class="breadcrumb-item"><a href="{{ route('petugas.beranda') }}">Dashboard</a></li>
+                        @else
                         <li class="breadcrumb-item"><a href="{{ route('peminjam.beranda') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('buku.index') }}">Daftar Buku</a></li>
+                        @endif
+                        @if (Auth::user()->akses == 'admin' || Auth::user()->akses == 'petugas')
+                        <li class="breadcrumb-item"><a href="{{ route('buku.index') }}">Data Buku</a></li>
+                        @else           
+                        <li class="breadcrumb-item"><a href="{{ route('bukus.index') }}">Daftar Buku</a></li>
+                        @endif
                         <li class="breadcrumb-item active" aria-current="page">Detail Buku</li>
                     </ol>
                 </nav>
@@ -35,6 +45,9 @@
                                 <div class="col-6">
                                     <img src="{{ Storage::url('public/buku/').$model->gambar }}" class="rounded" style="width: 100%">
                                     <p class="mt-3">Rating : <span class="badge bg-primary">{{ $model->averageRating() }}</span></p>
+                                    <p class="mt-3">Stok : <span class="badge bg-primary">@if ($model->stok == 0)
+                                        Tidak Tersedia
+                                    @endif{{ $model->stok }}</span></p>
                                     
                                 </div>
                                 <div class="col-6">
@@ -60,7 +73,11 @@
                                     <span class="badge bg-info mb-1">{{ $category->nm_kategori }}</span>
                                     @endforeach
                                     <div class="mt-3 mb-3"><a href="{{ route('bukus.index') }}" class="btn btn-danger d-block">Kembali</a></div>
-                                    <a href="{{ route('buku.pinjam.create', $model->id) }}" class="btn btn-primary d-block">Pinjam</a>
+                                    @if (Auth::user()->akses == 'admin' || Auth::user()->akses == 'petugas')
+                                        <a href="" class="btn btn-success d-block">Peminjam</a>
+                                    @elseif (Auth::user()->akses == 'peminjam')
+                                        <a href="{{ route('buku.pinjam.create', $model->id) }}" class="btn btn-primary d-block">Pinjam</a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -69,8 +86,8 @@
                                 
                             </div>
                             <div class="row">
-                                <label for="" style="font-weight:bold;">Sinopsis :</label>
-                                <p class="card-text" style="scrollbar-width: thin">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam ut laudantium, cupiditate asperiores nemo repellendus repudiandae qui earum similique voluptate vero, facilis facere voluptates veritatis repellat rerum, dolorum nisi illo quia unde ad recusandae ducimus! Iure numquam dignissimos distinctio tempore velit assumenda deserunt ex, deleniti praesentium perspiciatis. Consequuntur praesentium tempore officiis laudantium ipsa quidem dicta molestiae assumenda quas ab? Dolorum, consequuntur maiores sapiente pariatur similique at vel quasi rerum debitis voluptatum mollitia quidem accusamus excepturi atque distinctio facere quaerat? Quisquam aliquid ipsum sunt molestiae officiis, accusamus dignissimos deserunt consectetur nemo, a consequatur impedit ad incidunt beatae voluptates minus delectus ab.</p>
+                                <label for="" class="form-label" style="font-weight:bold;">Sinopsis :</label>
+                                <div style="text-align: justify; text-justify: inter-word; font-size: 14px; overflow: scroll; height: 250px">{!! $model->deskripsi !!}</div>
                             </div>
                         </div>
                     </div>

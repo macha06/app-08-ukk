@@ -97,7 +97,11 @@ class BukuController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $model = Model::findOrFail($id);
+        return view('peminjam.buku_show',[
+            'routePrefix' => 'buku',
+            'title' => 'Data Buku',
+        ])->with('model', $model);
     }
 
     /**
