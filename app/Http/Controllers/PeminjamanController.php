@@ -21,8 +21,13 @@ class PeminjamanController extends Controller
             'jumlah' => 'required|numeric|min:1'
         ]);
 
+        if ($request->return_date < now()) {
+            Alert::error('Return date cannot be in the past');
+            return redirect()->route('buku.pinjaman');
+        }
+        
         $buku = Model::findOrFail($id);
-        if ($buku->stok < 1) {
+        if ($buku->stok < $request->jumlah) {
             Alert::class('Stok buku ' . $buku->judul . ' habis');
             return redirect()->route('buku.pinjaman');
         }
