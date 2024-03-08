@@ -1,6 +1,6 @@
 # M-Puss
 ## Install
-'git clone https://github.com/macha06/app-08-ukk'
+`git clone https://github.com/macha06/app-08-ukk`
 'code'
 You should read this, it's **very important**.
 You _might_ want to read this.
