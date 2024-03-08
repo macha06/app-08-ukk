@@ -1,2 +1,3 @@
 # M-Puss
-![M-PUSS](/public/assets/img/logo.png)
+## Install
+'git clone https://github.com/macha06/app-08-ukk'
