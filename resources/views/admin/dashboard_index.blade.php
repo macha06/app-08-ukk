@@ -98,7 +98,11 @@
                             <h4>Statistik Peminjaman</h4>
                         </div>
                         <div class="card-body">
-                            <canvas id="myChart" width="400" height="400"></canvas>
+                            @if ($chartData)
+                                <canvas id="myChart" width="400" height="400"></canvas>
+                            @else
+                                <p>No data available.</p>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -186,4 +190,27 @@
     </section>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: {!! json_encode($chartData['bulan']) !!},
+            datasets: [{
+                label: 'Total Peminjaman',
+                data: {!! json_encode($chartData['total_peminjaman']) !!},
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
 @endsection

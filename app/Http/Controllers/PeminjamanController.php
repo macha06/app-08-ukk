@@ -17,18 +17,24 @@ class PeminjamanController extends Controller
     public function pinjam (Request $request, $id)
     {
         $request->validate([
-            'return_date' => 'required|date|after_or_equal:today',
+            'return_date' => 'required|date',
             'jumlah' => 'required|numeric|min:1'
         ]);
 
         if ($request->return_date < now()) {
-            Alert::error('Return date cannot be in the past');
-            return redirect()->route('buku.pinjaman');
+            Alert::warning('Tanggal pengembalian harus lebih dari hari ini');
+            return redirect()->route('buku.pinjam.create', $id);
         }
         
         $buku = Model::findOrFail($id);
         if ($buku->stok < $request->jumlah) {
-            Alert::class('Stok buku ' . $buku->judul . ' habis');
+            Alert::warning('Stok buku ' . $buku->judul . ' tersisa ' . $buku->stok . ' buku');
+            return redirect()->route('buku.pinjam.create', $id);
+        }
+
+        $user = Auth::users();
+        if ($user->peminjaman()->where('status', 'Menunggu Persetujuan')->exists()) {
+            Alert::warning('Anda sudah meminjam buku');
             return redirect()->route('buku.pinjaman');
         }
 
