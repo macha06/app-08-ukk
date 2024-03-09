@@ -52,10 +52,11 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
+                                    <th>Avatar</th>
+                                    <th>Username</th>
                                     <th>Nama Lengkap</th>
                                     <th>Email</th>
                                     <th>Nomor Telepon</th>
-                                    <th>Alamat</th>
                                     <th>Akses</th>
                                     <th>Aksi</th>        
                                 </tr>
@@ -64,10 +65,21 @@
                                 @foreach ($model as $item)  
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
+                                    <td>
+                                        @if ($item->avatar == null)
+                                            <img src="{{ Avatar::create($item->username)->toBase64() }}" style="width: 50px; height: 50px; border-radius: 50%">
+                                        @else
+                                            <img src="{{ Storage::url('public/avatar/').$item->avatar }}" style="width: 50px; height: 50px; border-radius: 50%">
+                                        @endif
+                                    </td>
+                                    <td>{{ $item->username }}</td>
+                                    <td>{{ $item->username }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
-                                    <td>{{ $item->telepon }}</td>
-                                    <td>{{ $item->alamat }}</td>
+                                    <td>
+                                        @if ($item->telepon == null)
+                                            <span class="badge bg-danger">Belum ada nomor telepon</span>
+                                        @endif{{ $item->telepon }}</td>
                                     <td>
                                         @if ($item->akses == 'admin')
                                             <span class="badge bg-primary">{{ $item->akses }}</span>

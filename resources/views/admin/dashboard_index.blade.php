@@ -80,7 +80,7 @@
                         <div class="card-body px-4 py-4-5">
                             <div class="d-flex align-items-center">
                                 <div class="avatar avatar-xl">
-                                    <img src="{{ Storage::url('public/avatar/').Auth::user()->avatar }}" alt="Avatar">
+                                    <img src="{{ Avatar::create(Auth::user()->name)->toBase64() }}" alt="Avatar" width="200" height="200" />
                                 </div>
                                 <div class="ms-3 name">
                                     <h5 class="font-bold">{{ Auth::user()->name }}</h5>

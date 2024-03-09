@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
 use App\Models\User as Model;
-use League\Flysystem\Visibility;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -67,7 +65,7 @@ class ProfileController extends Controller
 
         }else {
             //update post without image
-
+            
             $user->update([
                 'name' => $request->get('name'),
                 'username' => $request->get('username'),
@@ -75,8 +73,7 @@ class ProfileController extends Controller
                 'email' => $request->get('email'),
                 'telepon' => $request->get('telepon'),
                 'alamat' => $request->get('alamat'),
-            ]);
-        
+            ]); 
         }
         //redirect to index
         Alert::success('Hore!', 'data berhasil diupdate');
