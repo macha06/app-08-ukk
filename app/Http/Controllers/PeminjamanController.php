@@ -32,10 +32,14 @@ class PeminjamanController extends Controller
             return redirect()->route('buku.pinjam.create', $id);
         }
 
-        $user = Auth::users();
-        if ($user->peminjaman()->where('status', 'Menunggu Persetujuan')->exists()) {
-            Alert::warning('Anda sudah meminjam buku');
-            return redirect()->route('buku.pinjaman');
+        $user = User::find(auth()->id());
+        if ($user->peminjaman()->where('buku_id', $id)->where('status', 'Dipinjam')->exists()) {
+            Alert::warning('Buku ' . $buku->judul . ' sedang dipinjam');
+            return redirect()->route('buku.pinjam.create', $id);
+        }
+        if ($user->peminjaman()->where('buku_id', $id)->where('status', 'Menunggu Persetujuan')->exists()) {
+            Alert::warning('Buku ' . $buku->judul . ' sedang Menunggu Persetujuan');
+            return redirect()->route('buku.pinjam.create', $id);
         }
 
         $pinjam = new Peminjaman();

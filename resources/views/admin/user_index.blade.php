@@ -73,7 +73,6 @@
                                         @endif
                                     </td>
                                     <td>{{ $item->username }}</td>
-                                    <td>{{ $item->username }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>

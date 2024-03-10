@@ -17,10 +17,12 @@
         @else
             @include('layout.sidebar_peminjam')
         @endif
-        <div id="main">
-            @include('layout.header')
-            @include('sweetalert::alert')
-            @yield('konten')
+        <div id="main" class='layout-navbar navbar-fixed'>
+            @include('layout.navbar')
+            <div id="main-content">
+                @include('sweetalert::alert')
+                @yield('konten')
+            </div>
             @include('layout.footer')
         </div>
     </div>

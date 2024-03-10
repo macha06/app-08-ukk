@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('judul');
             $table->string('penulis');
             $table->string('penerbit');
-            $table->string('tahun_terbit');
-            $table->string('deskripsi');
+            $table->date('tahun_terbit');
+            $table->string('deskripsi', 1000);
             $table->string('gambar');
             $table->integer('stok');
             $table->timestamps();

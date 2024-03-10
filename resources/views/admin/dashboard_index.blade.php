@@ -80,7 +80,12 @@
                         <div class="card-body px-4 py-4-5">
                             <div class="d-flex align-items-center">
                                 <div class="avatar avatar-xl">
-                                    <img src="{{ Avatar::create(Auth::user()->name)->toBase64() }}" alt="Avatar" width="200" height="200" />
+                                    @if (Auth::user()->avatar == null)
+                                        <img src="{{ Avatar::create(Auth::user()->name)->toBase64() }}" alt="Avatar" width="200" height="200" />
+                                    @else
+                                        <img src="{{ Storage::url('public/avatar/').Auth::user()->avatar }}" alt="Avatar" class="rounded" width="200" height="200">
+                                        
+                                    @endif
                                 </div>
                                 <div class="ms-3 name">
                                     <h5 class="font-bold">{{ Auth::user()->name }}</h5>
@@ -190,6 +195,7 @@
     </section>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+@if ($chartData)   
 <script>
     var ctx = document.getElementById('myChart').getContext('2d');
     var myChart = new Chart(ctx, {
@@ -213,4 +219,5 @@
         }
     });
 </script>
+@endif
 @endsection
